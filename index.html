@@ -12,12 +12,14 @@
       background-color: #f4f6f9;
       color: #333;
     }
+
     header {
       background-color: #2e3b4e;
       color: white;
       padding: 20px;
       text-align: center;
     }
+
     main {
       max-width: 800px;
       margin: 40px auto;
@@ -26,32 +28,82 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       border-radius: 10px;
     }
+
     h1 {
       font-size: 28px;
       margin-bottom: 10px;
     }
+
     h2 {
       font-size: 20px;
       color: #2e3b4e;
       border-bottom: 1px solid #ccc;
       padding-bottom: 5px;
     }
+
     ul {
       list-style: none;
       padding: 0;
       margin: 15px 0;
     }
+
     li {
       padding: 10px 0;
       border-bottom: 1px solid #eee;
       display: flex;
       justify-content: space-between;
     }
+
     .footer {
       margin-top: 30px;
       font-size: 14px;
       text-align: right;
       color: #666;
+    }
+
+    .foto-base {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background-color: #eef1f5;
+      padding: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .foto-base img {
+      width: 80px;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .foto-base p {
+      margin: 0;
+      font-size: 14px;
+      color: #444;
+    }
+
+    /* Estilo do zoom */
+    .zoom-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .zoom-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
   </style>
 </head>
@@ -87,6 +139,26 @@
     <div class="footer">
       Checagem realizada em: <strong>01/08/2025 às 14:30</strong>
     </div>
+
+    <div class="foto-base" onclick="abrirZoom()">
+      <img src="foto01.jpg" alt="Foto atual base" />
+      <p>Foto atual base tirada em 05/08/2025 às 15:30 da tarde.</p>
+    </div>
   </main>
+
+  <!-- Zoom Overlay -->
+  <div class="zoom-overlay" onclick="fecharZoom()" id="zoomOverlay">
+    <img src="foto01.jpg" alt="Imagem ampliada">
+  </div>
+
+  <script>
+    function abrirZoom() {
+      document.getElementById("zoomOverlay").style.display = "flex";
+    }
+
+    function fecharZoom() {
+      document.getElementById("zoomOverlay").style.display = "none";
+    }
+  </script>
 </body>
 </html>
