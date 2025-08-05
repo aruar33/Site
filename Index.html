@@ -52,7 +52,20 @@
       border-bottom: 1px solid #eee;
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
+
+    .status {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    .verde { background-color: #4CAF50; }
+    .amarelo { background-color: #FFC107; }
+    .vermelho { background-color: #F44336; }
 
     .footer {
       margin-top: 30px;
@@ -105,6 +118,25 @@
       border-radius: 8px;
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
+
+    /* Legenda */
+    .legenda {
+      margin-top: 30px;
+      padding: 10px;
+      background-color: #eef1f5;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .legenda-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .legenda-item .status {
+      margin-right: 8px;
+    }
   </style>
 </head>
 <body>
@@ -116,25 +148,33 @@
   <main>
     <h2>Postes</h2>
     <ul>
-      <li><span>Postes de 7 metros</span><span>12 unidades</span></li>
-      <li><span>Postes de 12 metros</span><span>15 unidades</span></li>
-      <li><span>Postes de Iluminação</span><span>150 unidades</span></li>
+      <li><span>Postes de 7 metros</span><span>12 unidades <span class="status vermelho"></span></span></li>
+      <li><span>Postes de 12 metros</span><span>15 unidades <span class="status vermelho"></span></span></li>
+      <li><span>Postes de Iluminação</span><span>150 unidades <span class="status vermelho"></span></span></li>
     </ul>
 
     <h2>Iluminação</h2>
     <ul>
-      <li><span>Luminárias</span><span>300 unidades</span></li>
+      <li><span>Luminárias</span><span>300 unidades <span class="status vermelho"></span></span></li>
     </ul>
 
     <h2>Acessórios</h2>
     <ul>
-      <li><span>Nox</span><span>500 unidades</span></li>
+      <li><span>Nox</span><span>500 unidades <span class="status vermelho"></span></span></li>
     </ul>
 
     <h2>Cabos</h2>
     <ul>
-      <li><span>Cabo</span><span>2500 metros</span></li>
+      <li><span>Cabo</span><span>2500 metros <span class="status verde"></span></span></li>
     </ul>
+
+    <!-- Legenda -->
+    <div class="legenda">
+      <strong>Legenda:</strong>
+      <div class="legenda-item"><span class="status verde"></span>Estoque OK (acima de 2000)</div>
+      <div class="legenda-item"><span class="status amarelo"></span>Estoque Regular (entre 1000 e 2000)</div>
+      <div class="legenda-item"><span class="status vermelho"></span>Estoque Baixo (abaixo de 1000)</div>
+    </div>
 
     <div class="footer">
       Checagem realizada em: <strong>01/08/2025 às 14:30</strong>
