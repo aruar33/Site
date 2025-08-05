@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Controle de Estoque</title>
   <style>
-    /* Estilo geral */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
@@ -14,77 +13,60 @@
       color: #333;
     }
 
-    /* Cabeçalho */
     header {
       background-color: #2e3b4e;
       color: white;
-      padding: 25px;
+      padding: 20px;
       text-align: center;
-      border-bottom: 5px solid #4CAF50;
     }
 
-    /* Área principal */
     main {
-      max-width: 900px;
+      max-width: 800px;
       margin: 40px auto;
       background: white;
-      padding: 35px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      border-radius: 12px;
-      border: 2px solid #ccc;
+      padding: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
     }
 
     h1 {
-      font-size: 30px;
-      margin-bottom: 5px;
-    }
-
-    h2 {
-      font-size: 22px;
-      color: #2e3b4e;
-      border-left: 6px solid #4CAF50;
-      padding-left: 10px;
-      margin-top: 30px;
+      font-size: 28px;
       margin-bottom: 10px;
     }
 
-    /* Lista de itens */
+    h2 {
+      font-size: 20px;
+      color: #2e3b4e;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+
     ul {
       list-style: none;
       padding: 0;
       margin: 15px 0;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background-color: #fafafa;
     }
 
     li {
-      padding: 12px 20px;
+      padding: 10px 0;
       border-bottom: 1px solid #eee;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    li:last-child {
-      border-bottom: none;
-    }
-
-    /* Indicadores de status */
     .status {
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
       border-radius: 50%;
       display: inline-block;
       margin-left: 10px;
-      border: 2px solid #999;
     }
 
     .verde { background-color: #4CAF50; }
     .amarelo { background-color: #FFC107; }
     .vermelho { background-color: #F44336; }
 
-    /* Rodapé */
     .footer {
       margin-top: 30px;
       font-size: 14px;
@@ -92,7 +74,6 @@
       color: #666;
     }
 
-    /* Bloco da foto */
     .foto-base {
       margin-top: 40px;
       display: flex;
@@ -100,21 +81,15 @@
       gap: 15px;
       background-color: #eef1f5;
       padding: 15px;
-      border-radius: 10px;
-      border: 2px dashed #4CAF50;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .foto-base:hover {
-      background-color: #dde3ea;
     }
 
     .foto-base img {
-      width: 90px;
+      width: 80px;
       height: auto;
-      border-radius: 6px;
-      border: 2px solid #ccc;
+      border-radius: 4px;
+      border: 1px solid #ccc;
     }
 
     .foto-base p {
@@ -123,7 +98,6 @@
       color: #444;
     }
 
-    /* Zoom da imagem */
     .zoom-overlay {
       position: fixed;
       top: 0;
@@ -140,28 +114,26 @@
     .zoom-overlay img {
       max-width: 90%;
       max-height: 90%;
-      border-radius: 10px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.6);
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
 
-    /* Legenda de status */
     .legenda {
       margin-top: 30px;
-      padding: 15px;
+      padding: 10px;
       background-color: #eef1f5;
-      border-radius: 10px;
+      border-radius: 8px;
       font-size: 14px;
-      border-left: 5px solid #4CAF50;
     }
 
     .legenda-item {
       display: flex;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }
 
     .legenda-item .status {
-      margin-right: 10px;
+      margin-right: 8px;
     }
   </style>
 </head>
@@ -174,32 +146,32 @@
   <main>
     <h2>Postes</h2>
     <ul>
-      <li><span>Postes de 7 metros</span><span>12 unidades <span class="status vermelho"></span></span></li>
-      <li><span>Postes de 12 metros</span><span>15 unidades <span class="status vermelho"></span></span></li>
-      <li><span>Postes de Iluminação</span><span>150 unidades <span class="status vermelho"></span></span></li>
+      <li><span>Poste - 7 metros</span><span>12 unidades <span class="status vermelho"></span></span></li>
+      <li><span>Poste - 12 metros</span><span>15 unidades <span class="status vermelho"></span></span></li>
+      <li><span>Poste de iluminação pública</span><span>150 unidades <span class="status vermelho"></span></span></li>
     </ul>
 
     <h2>Iluminação</h2>
     <ul>
-      <li><span>Luminárias</span><span>300 unidades <span class="status vermelho"></span></span></li>
+      <li><span>Luminárias LED</span><span>300 unidades <span class="status vermelho"></span></span></li>
     </ul>
 
     <h2>Acessórios</h2>
     <ul>
-      <li><span>Nox</span><span>500 unidades <span class="status vermelho"></span></span></li>
+      <li><span>Reator eletrônico (Nox)</span><span>500 unidades <span class="status vermelho"></span></span></li>
     </ul>
 
     <h2>Cabos</h2>
     <ul>
-      <li><span>Cabo</span><span>2500 metros <span class="status verde"></span></span></li>
+      <li><span>Cabo de energia</span><span>2.500 metros <span class="status verde"></span></span></li>
     </ul>
 
     <!-- Legenda -->
     <div class="legenda">
       <strong>Legenda:</strong>
-      <div class="legenda-item"><span class="status verde"></span>Estoque OK (acima de 2000)</div>
-      <div class="legenda-item"><span class="status amarelo"></span>Estoque Regular (entre 1000 e 2000)</div>
-      <div class="legenda-item"><span class="status vermelho"></span>Estoque Baixo (abaixo de 1000)</div>
+      <div class="legenda-item"><span class="status verde"></span>Estoque Alto (acima de 2.000)</div>
+      <div class="legenda-item"><span class="status amarelo"></span>Estoque Regular (entre 1.000 e 2.000)</div>
+      <div class="legenda-item"><span class="status vermelho"></span>Estoque Baixo (abaixo de 1.000)</div>
     </div>
 
     <div class="footer">
@@ -207,8 +179,8 @@
     </div>
 
     <div class="foto-base" onclick="abrirZoom()">
-      <img src="foto01.jpg" alt="Foto atual base" />
-      <p>Foto atual base tirada em 05/08/2025 às 15:30 da tarde.</p>
+      <img src="foto01.jpg" alt="Foto da base atual" />
+      <p>Foto registrada em 05/08/2025 às 15:30.</p>
     </div>
   </main>
 
