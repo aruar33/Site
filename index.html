@@ -923,8 +923,22 @@
                 Nova Conversa
             </button>
             
-            <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" class="new-chat-btn" style="margin-top: 10px; text-decoration: none;">
-                Sobre o Criador
+            
+            
+            <a href="https://wa.me/2433427336" target="_blank" class="new-chat-btn" style="margin-top: 10px; text-decoration: none;">
+                I.A no Whatsapp
+            </a>
+
+            <a href="#" id="webcamBtn" class="new-chat-btn" style="margin-top: 10px; text-decoration: none;">
+                Webcam TimeSquare Server
+            </a>
+
+            <a href="#" onclick="openVideoModal('https://www.youtube.com/embed/nVsDt8AvfCU');" class="new-chat-btn" style="margin-top: 10px; text-decoration: none;">
+                Webcam Timesquare Telão
+            </a>
+
+            <a href="#" onclick="openVideoModal('https://www.youtube.com/embed/qh6Nqiq6LIg');" class="new-chat-btn" style="margin-top: 10px; text-decoration: none;">
+                Os Ceús Observatorio
             </a>
             
             <div class="chat-history" id="chatHistory">
@@ -935,6 +949,12 @@
                     <span>Conversa Atual</span>
                 </div>
             </div>
+            <a href="ai_project_site.html" class="new-chat-btn" style="margin-top: 10px; text-decoration: none;">
+                Sobre o Site
+            </a>
+            <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" class="new-chat-btn" style="margin-top: 10px; text-decoration: none;">
+                Sobre o Criador
+            </a>
         </aside>
         
         <!-- Main Content -->
@@ -1031,6 +1051,13 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <div id="videoModal" style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.8);">
+      <div style="position: relative; margin: 15% auto; padding: 20px; width: 80%; max-width: 560px; background: #1a1a2e; border-radius: 16px;">
+        <span id="closeModal" style="position: absolute; top: 10px; right: 25px; color: #fff; font-size: 35px; font-weight: bold; cursor: pointer;">&times;</span>
+        <iframe id="youtubeVideo" width="100%" height="315" src="https://www.youtube.com/embed/rnXIjl_Rzy4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
     
     <script>
@@ -1405,6 +1432,35 @@ Você está sempre atualizado com as últimas tendências e desenvolvimentos em 
             const sidebar = document.getElementById('sidebar');
             if (window.innerWidth > 768) {
                 sidebar.classList.remove('open');
+            }
+        });
+
+        // Modal logic
+        const videoModal = document.getElementById('videoModal');
+        const webcamBtn = document.getElementById('webcamBtn');
+        const closeModal = document.getElementById('closeModal');
+        const youtubeVideo = document.getElementById('youtubeVideo');
+        const videoSrc = youtubeVideo.src; // Store original src for resetting
+
+        function openVideoModal(videoUrl) {
+            youtubeVideo.src = videoUrl + '?autoplay=1'; // Autoplay the video
+            videoModal.style.display = 'block';
+        }
+
+        webcamBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openVideoModal('https://www.youtube.com/embed/rnXIjl_Rzy4'); // Original Timesquare Server video
+        });
+
+        closeModal.addEventListener('click', () => {
+            videoModal.style.display = 'none';
+            youtubeVideo.src = videoSrc; // Reset video source to stop playback
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target == videoModal) {
+                videoModal.style.display = 'none';
+                youtubeVideo.src = videoSrc; // Reset video source to stop playback
             }
         });
     </script>
