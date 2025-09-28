@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="logo.png" type="image/png">
+    <title>AI Assistant - Portfólio Interativo</title>
     <style>
         :root {
             --primary-purple: #9333ea;
@@ -47,7 +48,6 @@
             height: 100vh;
         }
 
-        /* Sidebar */
         .sidebar {
             width: 280px;
             background: linear-gradient(145deg, rgba(26, 26, 46, 0.9) 0%, rgba(42, 42, 62, 0.9) 100%);
@@ -121,6 +121,11 @@
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
         }
 
         .new-chat-btn {
@@ -215,7 +220,6 @@
             box-shadow: 0 5px 20px rgba(147, 51, 234, 0.2);
         }
 
-        /* Main Chat Area */
         .main-content {
             flex: 1;
             display: flex;
@@ -254,15 +258,11 @@
             border: 1px solid rgba(251, 191, 36, 0.3);
             border-radius: 10px;
             padding: 8px 15px;
-            margin-left: auto; /* Pushes it to the right */
+            margin-left: auto;
             box-shadow: 0 5px 15px rgba(251, 191, 36, 0.1);
             display: flex;
             align-items: center;
             gap: 8px;
-        }
-
-        .pix-message svg {
-            color: var(--primary-yellow);
         }
 
         .model-selector {
@@ -410,7 +410,6 @@
             box-shadow: 0 8px 25px rgba(147, 51, 234, 0.1);
         }
 
-        /* Input Area */
         .input-area {
             padding: 15px 35px;
             background: linear-gradient(145deg, rgba(26, 26, 46, 0.9) 0%, rgba(42, 42, 62, 0.9) 100%);
@@ -435,118 +434,64 @@
             text-align: center;
             font-size: 12px;
             color: var(--text-secondary);
-            margin-top: 10px;
+            margin-top: 15px;
             opacity: 0.7;
         }
 
         .input-container {
             display: flex;
             gap: 15px;
-            align-items: flex-end;
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
+            align-items: center;
         }
 
-        .input-wrapper {
+        #message-input {
             flex: 1;
             background: linear-gradient(145deg, rgba(42, 42, 62, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 18px 20px;
-            display: flex;
-            align-items: flex-end;
-            gap: 12px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .input-wrapper:focus-within {
-            border-color: var(--primary-purple);
-            box-shadow: 0 0 0 4px rgba(147, 51, 234, 0.15), 0 8px 30px rgba(0, 0, 0, 0.3);
-            transform: translateY(-2px);
-        }
-
-        #messageInput {
-            flex: 1;
-            background: transparent;
-            border: none;
+            border: 2px solid rgba(147, 51, 234, 0.2);
+            border-radius: 25px;
+            padding: 15px 25px;
             color: var(--text-primary);
             font-size: 16px;
-            resize: none;
-            outline: none;
-            max-height: 150px;
-            line-height: 1.6;
             font-family: inherit;
-        }
-
-        #messageInput::placeholder {
-            color: var(--text-secondary);
-            font-weight: 400;
-        }
-
-        .input-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .action-btn {
-            width: 36px;
-            height: 36px;
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
         }
 
-        .action-btn:hover {
-            background: var(--gradient-secondary);
-            color: var(--primary-purple);
-            transform: scale(1.1);
+        #message-input:focus {
+            outline: none;
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+        }
+
+        #message-input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.7;
         }
 
         .send-btn {
-            padding: 15px 30px;
             background: var(--gradient-main);
             border: none;
-            border-radius: 12px;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
             color: white;
-            font-weight: 600;
-            font-size: 15px;
+            font-size: 20px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
             box-shadow: 0 8px 25px rgba(147, 51, 234, 0.3);
-            position: relative;
-            overflow: hidden;
+            flex-shrink: 0;
         }
 
-        .send-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
+        .send-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.4);
         }
 
-        .send-btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.4);
-        }
-
-        .send-btn:hover:not(:disabled)::before {
-            left: 100%;
+        .send-btn:active {
+            transform: scale(0.95);
         }
 
         .send-btn:disabled {
@@ -555,657 +500,186 @@
             transform: none;
         }
 
-        /* File Upload */
-        .file-upload-input {
+        .loading-indicator {
             display: none;
-        }
-
-        .uploaded-files {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .uploaded-file {
-            display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 15px;
-            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%);
-            border: 1px solid rgba(251, 191, 36, 0.3);
-            border-radius: 10px;
-            font-size: 14px;
-            color: var(--primary-yellow);
-            font-weight: 500;
-            animation: fileSlideIn 0.3s ease;
-            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.1);
-        }
-
-        @keyframes fileSlideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .remove-file {
-            cursor: pointer;
-            opacity: 0.7;
-            transition: all 0.2s ease;
-            padding: 2px;
-            border-radius: 50%;
-        }
-
-        .remove-file:hover {
-            opacity: 1;
-            background: rgba(251, 191, 36, 0.2);
-            transform: scale(1.1);
-        }
-
-        /* Loading Animation */
-        .typing-indicator {
-            display: flex;
-            gap: 6px;
-            padding: 25px;
-        }
-
-        .typing-dot {
-            width: 10px;
-            height: 10px;
-            background: var(--gradient-main);
-            border-radius: 50%;
-            animation: typingBounce 1.6s infinite;
-            box-shadow: 0 2px 8px rgba(147, 51, 234, 0.3);
-        }
-
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes typingBounce {
-            0%, 60%, 100% {
-                transform: translateY(0) scale(1);
-            }
-            30% {
-                transform: translateY(-15px) scale(1.1);
-            }
-        }
-
-        /* Welcome Screen */
-        .welcome-screen {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            text-align: center;
-            padding: 50px;
-        }
-
-        .welcome-logo {
-            width: 150px;
-            height: 140px;
-            border-radius: 35px;
-            margin-bottom: 40px;
-            animation: logoFloat 4s ease-in-out infinite;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        .welcome-logo::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: transparent;
-            border-radius: 40px;
-            z-index: -1;
-            opacity: 0.3;
-            animation: logoPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-15px) rotate(2deg);
-            }
-        }
-
-        @keyframes logoPulse {
-            0%, 100% {
-                opacity: 0.3;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.5;
-                transform: scale(1.05);
-            }
-        }
-
-        .welcome-title {
-            font-size: 42px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: var(--gradient-main);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: titleGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes titleGlow {
-            0%, 100% {
-                filter: drop-shadow(0 0 5px rgba(147, 51, 234, 0.3));
-            }
-            50% {
-                filter: drop-shadow(0 0 20px rgba(147, 51, 234, 0.5));
-            }
-        }
-
-        .welcome-subtitle {
-            font-size: 20px;
-            color: var(--text-secondary);
-            margin-bottom: 50px;
-            font-weight: 400;
-        }
-
-        .feature-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            max-width: 900px;
-            width: 100%;
-        }
-
-        .feature-card {
+            gap: 15px;
             padding: 20px;
-            background: linear-gradient(145deg, rgba(42, 42, 62, 0.4) 0%, rgba(26, 26, 46, 0.4) 100%);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--gradient-main);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary-purple);
-            box-shadow: 0 20px 50px rgba(147, 51, 234, 0.25);
             background: linear-gradient(145deg, rgba(42, 42, 62, 0.6) 0%, rgba(26, 26, 46, 0.6) 100%);
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature-icon {
-            font-size: 32px;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
-        }
-
-        .feature-title {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            background: var(--gradient-main);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .feature-desc {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        /* Code blocks styling */
-        pre {
-            background: linear-gradient(145deg, rgba(10, 10, 20, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
-            border: 1px solid rgba(147, 51, 234, 0.2);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 15px 0;
-            overflow-x: auto;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(147, 51, 234, 0.1);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
-        code {
-            background: rgba(147, 51, 234, 0.1);
-            padding: 3px 8px;
-            border-radius: 6px;
-            font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
-            border: 1px solid rgba(147, 51, 234, 0.2);
+        .loading-dots {
+            display: flex;
+            gap: 8px;
         }
 
-        /* Responsive */
+        .loading-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-purple);
+            animation: loadingDot 1.4s infinite ease-in-out both;
+        }
+
+        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes loadingDot {
+            0%, 80%, 100% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
         @media (max-width: 768px) {
             .sidebar {
-                position: fixed;
-                left: -280px;
-                z-index: 1000;
-                width: 280px;
+                width: 240px;
             }
             
-            .sidebar.open {
-                left: 0;
-                box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
+            .chat-header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 10px;
             }
             
-            .menu-toggle {
-                display: block;
+            .pix-message {
+                margin-left: 0;
             }
-
+            
             .chat-messages {
                 padding: 20px;
             }
-
+            
             .input-area {
-                padding: 20px;
-            }
-
-            .welcome-title {
-                font-size: 32px;
-            }
-
-            .feature-cards {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-        }
-
-        .menu-toggle {
-            display: none;
-            background: transparent;
-            border: none;
-            color: var(--text-primary);
-            font-size: 24px;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .menu-toggle:hover {
-            background: var(--gradient-secondary);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(26, 26, 46, 0.5);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--gradient-main);
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, var(--dark-purple) 0%, var(--dark-blue) 50%, var(--dark-yellow) 100%);
-        }
-
-        /* Glowing text effect for important elements */
-        .glow-text {
-            text-shadow: 0 0 10px rgba(147, 51, 234, 0.5);
-        }
-
-        /* Floating particles animation */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary-purple);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: float-particle 15s infinite linear;
-        }
-
-        @keyframes float-particle {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(-10vh) rotate(360deg);
-                opacity: 0;
+                padding: 15px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="particles" id="particles"></div>
-    
     <div class="container">
         <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
+        <div class="sidebar">
             <div class="sidebar-header">
                 <div class="logo">
-                    <div class="logo-text"><img src="logo2.png" alt="Visual Studio" style="width: 140px;"></div>
+                    <img src="logo.png" alt="Logo" class="logo-icon">
+                    <div class="logo-text">AI Assistant</div>
                 </div>
             </div>
             
             <button class="new-chat-btn" onclick="newChat()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-                Nova Conversa
+                <span>➕</span>
+                <span>Novo Chat</span>
             </button>
             
-            
-            
-            <a href="https://wa.me/+552433427336" target="_blank" class="new-chat-btn" style="margin-top: 10px; text-decoration: none;">
-                I.A no Whatsapp
-            </a>
-
-            <a href="#" id="webcamBtn" class="new-chat-btn" style="margin-top: 10px; text-decoration: none;">
-                Webcam TimeSquare Server
-            </a>
-
-            <a href="#" onclick="openVideoModal('https://www.youtube.com/embed/nVsDt8AvfCU');" class="new-chat-btn" style="margin-top: 10px; text-decoration: none;">
-                Webcam Timesquare Telão
-            </a>
-
-            <a href="#" onclick="openVideoModal('https://www.youtube.com/embed/qh6Nqiq6LIg');" class="new-chat-btn" style="margin-top: 10px; text-decoration: none;">
-                Os Ceús Observatorio
-            </a>
-            
-            <div class="chat-history" id="chatHistory">
+            <div class="chat-history" id="chat-history">
                 <div class="chat-history-item active">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <span>Conversa Atual</span>
+                    <span>💬</span>
+                    <span>Chat Atual</span>
                 </div>
             </div>
-            <a href="ai_project_site.html" class="new-chat-btn" style="margin-top: 10px; text-decoration: none;">
-                Sobre o Site
-            </a>
-            <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" class="new-chat-btn" style="margin-top: 10px; text-decoration: none;">
-                Sobre o Criador
-            </a>
-        </aside>
-        
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Chat Header -->
-            <header class="chat-header">
-                <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+            
+            <!-- About Section -->
+            <div style="padding: 20px; border-top: 1px solid rgba(42, 42, 62, 0.5); margin-top: auto;">
+                <div style="background: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(100, 149, 237, 0.1) 50%, rgba(251, 191, 36, 0.1) 100%); border-radius: 12px; padding: 15px; margin-bottom: 15px;">
+                    <h4 style="color: var(--primary-yellow); margin-bottom: 10px; font-size: 14px;">🚀 Sobre o Projeto</h4>
+                    <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 10px;">
+                        AI CodeAssist - Projeto inovador de 2019 que revolucionou o Visual Studio com inteligência artificial para assistência ao desenvolvedor.
+                    </p>
+                    <a href="ai_project_site.html" style="color: var(--primary-blue); text-decoration: none; font-size: 12px; font-weight: 600;">📖 Ver mais detalhes</a>
+                </div>
+                
+                <!-- Quick Links -->
+                <div style="background: linear-gradient(135deg, rgba(100, 149, 237, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%); border-radius: 12px; padding: 15px;">
+                    <h4 style="color: var(--primary-blue); margin-bottom: 10px; font-size: 14px;">🔗 Navegação Rápida</h4>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <a href="projects.html" style="color: var(--text-secondary); text-decoration: none; font-size: 11px; transition: color 0.3s ease;" onmouseover="this.style.color='var(--primary-yellow)'" onmouseout="this.style.color='var(--text-secondary)'">🚀 Ver Todos os Projetos</a>
+                        <a href="testimonials.html" style="color: var(--text-secondary); text-decoration: none; font-size: 11px; transition: color 0.3s ease;" onmouseover="this.style.color='var(--primary-yellow)'" onmouseout="this.style.color='var(--text-secondary)'">💬 Depoimentos de Clientes</a>
+                        <a href="contact.html" style="color: var(--text-secondary); text-decoration: none; font-size: 11px; transition: color 0.3s ease;" onmouseover="this.style.color='var(--primary-yellow)'" onmouseout="this.style.color='var(--text-secondary)'">📞 Entre em Contato</a>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%); border-radius: 12px; padding: 15px;">
+                    <h4 style="color: var(--primary-purple); margin-bottom: 10px; font-size: 14px;">👨‍💻 Desenvolvedor</h4>
+                    <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 10px;">
+                        <strong>Rodrigo Alves</strong><br>
+                        Senior Software Engineer & AI Specialist<br>
+                        Scrum Master Certified | Cybersecurity Expert
+                    </p>
+                    <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" style="background: linear-gradient(135deg, #0077B5, #005885); color: white; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
+                        📎 LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="main-content">
+            <div class="chat-header">
                 <div class="model-selector">
                     <select id="model-select">
-                        <option value="vs-pro">Modelo: VS Pro</option>
-                        <option value="gemma3:1b">Modelo: Gemma3:1b</option>
-                        <option value="nina-ia-1.0">Modelo: Nina IA 1.0</option>
-                        <option value="connor-ia-1.5-beta">Modelo: Connor IA 1.5 beta</option>
-                        <option value="vs-flash">Modelo: VS flash</option>
-                        <option value="visual-studio-1.0v">Modelo: Visual Studio 1.0v</option>
+                        <option value="gpt-4">GPT-4</option>
+                        <option value="gpt-3.5">GPT-3.5</option>
+                        <option value="claude">Claude</option>
+                        <option value="gemini">Gemini</option>
                     </select>
                 </div>
+                
                 <div class="pix-message">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                    </svg>
-                    <span>Ajude o projeto chave pix: 05574223708</span>
+                    <span>💰</span>
+                    <span>PIX: rodrigo.alves@email.com</span>
                 </div>
-            </header>
-            
-            <!-- Chat Messages Area -->
-            <div class="chat-messages" id="chatMessages">
-                <!-- Welcome Screen -->
-                <div class="welcome-screen" id="welcomeScreen">
-                    <div class="welcome-logo"><img src="logo.png" alt="VStudio Logo" style="width: 100%; border-radius: 35px;"></div>
-                    <h1 class="welcome-title">Bem-vindo ao Visual Studio</h1>
-                    <p class="welcome-subtitle">Seu assistente especialista em IA</p>
-                    
-                    <div class="feature-cards">
-                        <div class="feature-card">
-                            <div class="feature-icon">💡</div>
-                            <div class="feature-title">Inteligência Avançada</div>
-                            <div class="feature-desc">Respostas precisas e contextualizadas com tecnologia de ponta</div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">📄</div>
-                            <div class="feature-title">Análise de Documentos</div>
-                            <div class="feature-desc">Suporte completo para PDF, DOC, TXT e diversos formatos</div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🚀</div>
-                            <div class="feature-title">Alta Performance</div>
-                            <div class="feature-desc">Processamento rápido e eficiente com IA otimizada</div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🔒</div>
-                            <div class="feature-title">Seguro e Privado</div>
-                            <div class="feature-desc">Suas conversas são protegidas com máxima segurança.</div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🤖</div>
-                            <div class="feature-title">I.A local não Generativa</div>
-                            <div class="feature-desc">projeto de IA rodando em servidor proprio.</div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🔥</div>
-                            <div class="feature-title">Rapidez e Fluidez</div>
-                            <div class="feature-desc">I.A rodando sem cuda core apenas processamento.</div>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+                <!-- Welcome message -->
+                <div class="message">
+                    <div class="message-avatar ai-avatar">🤖</div>
+                    <div class="message-content">
+                        <h3>AI Assistant</h3>
+                        <div class="message-text">
+                            Olá! Sou seu assistente de IA. Como posso ajudar você hoje? 😊
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Input Area -->
+
             <div class="input-area">
-                <div class="uploaded-files" id="uploadedFiles"></div>
                 <div class="input-container">
-                    <div class="input-wrapper">
-                        <textarea 
-                            id="messageInput" 
-                            placeholder="Digite sua mensagem..."
-                            rows="1"
-                            onkeydown="handleKeyPress(event)"
-                            oninput="autoResize(this)"
-                        ></textarea>
-                        <div class="input-actions">
-                            <input type="file" id="fileUpload" class="file-upload-input" multiple accept=".pdf,.txt,.doc,.docx,.csv,.json" onchange="handleFileUpload(event)">
-                            <button class="action-btn" onclick="document.getElementById('fileUpload').click()" title="Anexar arquivo">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <button class="send-btn" onclick="sendMessage()" id="sendBtn">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="22" y1="2" x2="11" y2="13"></line>
-                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                        </svg>
-                        Enviar
+                    <input type="text" id="message-input" placeholder="Digite sua mensagem..." onkeypress="handleKeyPress(event)">
+                    <button class="send-btn" id="send-btn" onclick="sendMessage()">
+                        ➤
                     </button>
                 </div>
-                <div class="copyright">
-                    &copy; 2025 Visual Studio. Todos os direitos reservados. Desenvolvido por <a href="https://www.linkedin.com/in/rodrigo-alves/" style="color: white; font-weight: bold;">Rodrigo Alves</a>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <div id="videoModal" style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.8);">
-      <div style="position: relative; margin: 15% auto; padding: 20px; width: 80%; max-width: 560px; background: #1a1a2e; border-radius: 16px;">
-        <span id="closeModal" style="position: absolute; top: 10px; right: 25px; color: #fff; font-size: 35px; font-weight: bold; cursor: pointer;">&times;</span>
-        <iframe id="youtubeVideo" width="100%" height="315" src="https://www.youtube.com/embed/rnXIjl_Rzy4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </div>
-    
-    <script>
-        // Configuration
-        const API_KEY = 'AIzaSyA2Gq85sIgJfgnW8RWdmMUdwVRjNOYxwFA';
-        const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
-        
-        // System prompt para o Visual Studio
-        const SYSTEM_PROMPT = `Você é o Visual Studio Assistant, um especialista avançado em Inteligência Artificial com profundo conhecimento em:
-
-- Machine Learning e Deep Learning
-- Processamento de Linguagem Natural
-- Visão Computacional
-- Redes Neurais e Arquiteturas de IA
-- Frameworks de IA (TensorFlow, PyTorch, etc.)
-- Implementação e otimização de modelos
-- Ética e melhores práticas em IA
-- Análise de dados e ciência de dados
-- Automação e IA aplicada
-
-Suas características:
-- Forneça respostas técnicas precisas e detalhadas
-- Use exemplos práticos quando apropriado
-- Mantenha um tom profissional mas acessível
-- Adapte o nível de complexidade baseado na pergunta do usuário
-- Sempre priorize clareza e utilidade prática
-- Quando analisar documentos, extraia insights relevantes
-- Todo o projeto foi elaborado e desenvolvido pela VStudio, o criador do projeto se chama Rodrigo Alves ( exclusivamente ele fez tudo apenas ele e ninguem mais )
-- Você não deve mencionar que é um modelo de linguagem. Você é o Visual Studio Assistant, um projeto da VStudio. Você tem suporte a múltiplos arquivos, podendo ler e entender PDFs.
-
-Você está sempre atualizado com as últimas tendências e desenvolvimentos em IA.`;
-
-        let messages = [];
-        let uploadedFiles = [];
-        let isProcessing = false;
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            autoResize(document.getElementById('messageInput'));
-            createFloatingParticles();
-        });
-
-        // Create floating particles effect
-        function createFloatingParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 30;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
                 
-                // Random colors from our palette
-                const colors = ['#9333ea', '#6495ED', '#fbbf24'];
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Toggle sidebar
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('open');
-        }
-
-        // New chat
-        function newChat() {
-            messages = [];
-            uploadedFiles = [];
-            document.getElementById('chatMessages').innerHTML = `
-                <div class="welcome-screen" id="welcomeScreen">
-                    <div class="welcome-logo"><img src="logo.png" alt="VStudio Logo" style="width: 100%; border-radius: 35px;"></div>
-                    <h1 class="welcome-title">Bem-vindo ao Visual Studio</h1>
-                    <p class="welcome-subtitle">Seu assistente especialista em IA</p>
-                    
-                    <div class="feature-cards">
-                        <div class="feature-card">
-                            <div class="feature-icon">💡</div>
-                            <div class="feature-title">Inteligência Avançada</div>
-                            <div class="feature-desc">Respostas precisas e contextualizadas com tecnologia de ponta</div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">📄</div>
-                            <div class="feature-title">Análise de Documentos</div>
-                            <div class="feature-desc">Suporte completo para PDF, DOC, TXT e diversos formatos</div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🚀</div>
-                            <div class="feature-title">Alta Performance</div>
-                            <div class="feature-desc">Processamento rápido e eficiente com IA otimizada</div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🔒</div>
-                            <div class="feature-title">Seguro e Privado</div>
-                            <div class="feature-desc">Suas conversas são protegidas com máxima segurança.</div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🤖</div>
-                            <div class="feature-title">I.A local não Generativa</div>
-                            <div class="feature-desc">projeto de IA rodando em servidor proprio.</div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🔥</div>
-                            <div class="feature-title">Rapidez e Fluidez</div>
-                            <div class="feature-desc">I.A rodando sem cuda core apenas processamento.</div>
-                        </div>
+                <div class="loading-indicator" id="loading-indicator">
+                    <span>AI está digitando</span>
+                    <div class="loading-dots">
+                        <div class="loading-dot"></div>
+                        <div class="loading-dot"></div>
+                        <div class="loading-dot"></div>
                     </div>
                 </div>
-            `;
-            document.getElementById('uploadedFiles').innerHTML = '';
-            document.getElementById('messageInput').value = '';
-        }
+                
+                <div class="copyright">
+                    © 2024 AI Assistant. Desenvolvido por Rodrigo Alves.
+                </div>
+            </div>
+        </div>
+    </div>
 
-        // Auto-resize textarea
-        function autoResize(textarea) {
-            textarea.style.height = 'auto';
-            textarea.style.height = Math.min(textarea.scrollHeight, 150) + 'px';
-        }
+    <script>
+        let chatHistory = [];
+        let currentChatIndex = 0;
 
-        // Handle key press
         function handleKeyPress(event) {
             if (event.key === 'Enter' && !event.shiftKey) {
                 event.preventDefault();
@@ -1213,280 +687,170 @@ Você está sempre atualizado com as últimas tendências e desenvolvimentos em 
             }
         }
 
-        // Handle file upload
-        function handleFileUpload(event) {
-            const files = event.target.files;
-            const uploadedFilesDiv = document.getElementById('uploadedFiles');
-            
-            for (let file of files) {
-                uploadedFiles.push(file);
-                
-                const fileElement = document.createElement('div');
-                fileElement.className = 'uploaded-file';
-                fileElement.innerHTML = `
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                    </svg>
-                    <span>${file.name}</span>
-                    <span class="remove-file" onclick="removeFile('${file.name}')">✕</span>
-                `;
-                uploadedFilesDiv.appendChild(fileElement);
-            }
-            
-            event.target.value = '';
-        }
-
-        // Remove file
-        function removeFile(fileName) {
-            uploadedFiles = uploadedFiles.filter(f => f.name !== fileName);
-            const uploadedFilesDiv = document.getElementById('uploadedFiles');
-            const fileElements = uploadedFilesDiv.querySelectorAll('.uploaded-file');
-            fileElements.forEach(el => {
-                if (el.textContent.includes(fileName)) {
-                    el.remove();
-                }
-            });
-        }
-
-        // Send message
-        async function sendMessage() {
-            const input = document.getElementById('messageInput');
+        function sendMessage() {
+            const input = document.getElementById('message-input');
             const message = input.value.trim();
             
-            if ((!message && uploadedFiles.length === 0) || isProcessing) return;
-            
-            // Remove welcome screen if exists
-            const welcomeScreen = document.getElementById('welcomeScreen');
-            if (welcomeScreen) {
-                welcomeScreen.remove();
-            }
-            
-            // Add user message to chat
-            addMessage('user', message);
-            
-            // Clear input and files
+            if (!message) return;
+
+            // Add user message
+            addMessage(message, 'user');
             input.value = '';
-            autoResize(input);
-            const filesToSend = [...uploadedFiles];
-            uploadedFiles = [];
-            document.getElementById('uploadedFiles').innerHTML = '';
-            
-            // Show typing indicator
-            showTypingIndicator();
-            
-            // Disable send button
-            isProcessing = true;
-            document.getElementById('sendBtn').disabled = true;
-            
-            try {
-                // Call Gemini API
-                const response = await callGeminiAPI(message, filesToSend);
-                
-                // Remove typing indicator
-                removeTypingIndicator();
-                
-                // Add AI response
-                addMessage('ai', response);
-            } catch (error) {
-                console.error('Error:', error);
-                removeTypingIndicator();
-                addMessage('ai', 'Desculpe, ocorreu um erro ao processar sua mensagem. Por favor, tente novamente.');
-            } finally {
-                isProcessing = false;
-                document.getElementById('sendBtn').disabled = false;
-            }
+
+            // Show loading indicator
+            showLoading();
+
+            // Simulate AI response (replace with actual API call)
+            setTimeout(() => {
+                hideLoading();
+                const aiResponse = generateAIResponse(message);
+                addMessage(aiResponse, 'ai');
+            }, 1000 + Math.random() * 2000); // Random delay between 1-3 seconds
         }
 
-        function showTypingIndicator() {
-            const chatMessages = document.getElementById('chatMessages');
-            const typingIndicator = document.createElement('div');
-            typingIndicator.id = 'typingIndicator';
-            typingIndicator.className = 'message';
-            typingIndicator.innerHTML = `
-                <div class="message-avatar ai-avatar"><img src="logo.png" alt="VS" style="width: 100%; height: 100%; border-radius: 12px;"></div>
+        function addMessage(text, sender) {
+            const messagesContainer = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const avatarClass = sender === 'user' ? 'user-avatar' : 'ai-avatar';
+            const avatarEmoji = sender === 'user' ? '👤' : '🤖';
+            const senderName = sender === 'user' ? 'Você' : 'AI Assistant';
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar ${avatarClass}">${avatarEmoji}</div>
                 <div class="message-content">
-                    <div class="typing-indicator">
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
+                    <h3>${senderName}</h3>
+                    <div class="message-text">${text}</div>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Add to chat history
+            if (!chatHistory[currentChatIndex]) {
+                chatHistory[currentChatIndex] = [];
+            }
+            chatHistory[currentChatIndex].push({ text, sender, timestamp: new Date() });
+        }
+
+        function showLoading() {
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const sendBtn = document.getElementById('send-btn');
+            loadingIndicator.style.display = 'flex';
+            sendBtn.disabled = true;
+        }
+
+        function hideLoading() {
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const sendBtn = document.getElementById('send-btn');
+            loadingIndicator.style.display = 'none';
+            sendBtn.disabled = false;
+        }
+
+        function generateAIResponse(userMessage) {
+            const responses = [
+                "Entendi! Vou ajudar você com isso. Pode me dar mais detalhes?",
+                "Ótima pergunta! Vou analisar isso para você.",
+                "Interessante! Vou pensar sobre isso e te dar uma resposta completa.",
+                "Com certeza! Vou processar sua solicitação e retornar com a melhor resposta.",
+                "Excelente ponto! Vou considerar isso na minha resposta.",
+                "Vou trabalhar nisso para você. Um momento, por favor!",
+                "Entendido! Vou preparar uma resposta detalhada para você."
+            ];
+            
+            const contextualResponses = {
+                "olá": "Olá! Como posso ajudar você hoje? 😊",
+                "oi": "Oi! Tudo bem? Em que posso ser útil?",
+                "bom dia": "Bom dia! Como posso ajudar você hoje?",
+                "boa tarde": "Boa tarde! Em que posso auxiliar?",
+                "boa noite": "Boa noite! Como posso ajudar?",
+                "ajuda": "Claro! Estou aqui para ajudar. Me diga o que você precisa!",
+                "help": "Of course! I'm here to help. What do you need?",
+                "obrigado": "De nada! Sempre que precisar, estarei aqui para ajudar! 😊",
+                "valeu": "Por nada! Conte sempre comigo!",
+                "tchau": "Tchau! Foi um prazer ajudar. Volte sempre! 👋"
+            };
+            
+            const lowerMessage = userMessage.toLowerCase();
+            
+            // Check for contextual responses
+            for (const [key, response] of Object.entries(contextualResponses)) {
+                if (lowerMessage.includes(key)) {
+                    return response;
+                }
+            }
+            
+            // Return random response
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
+        function newChat() {
+            // Save current chat
+            currentChatIndex++;
+            
+            // Clear messages
+            const messagesContainer = document.getElementById('chat-messages');
+            messagesContainer.innerHTML = `
+                <div class="message">
+                    <div class="message-avatar ai-avatar">🤖</div>
+                    <div class="message-content">
+                        <h3>AI Assistant</h3>
+                        <div class="message-text">
+                            Olá! Sou seu assistente de IA. Como posso ajudar você hoje? 😊
+                        </div>
                     </div>
                 </div>
             `;
-            chatMessages.appendChild(typingIndicator);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function removeTypingIndicator() {
-            const typingIndicator = document.getElementById('typingIndicator');
-            if (typingIndicator) {
-                typingIndicator.remove();
-            }
-        }
-
-        async function callGeminiAPI(message, files) {
-            const fileParts = await Promise.all(files.map(file => fileToGenerativePart(file)));
-
-            const userContent = {
-                role: 'user',
-                parts: [
-                    ...fileParts,
-                    { text: message }
-                ]
-            };
             
-            const contents = [
-                ...messages.map(msg => ({
-                    role: msg.role,
-                    parts: [{ text: msg.content }]
-                })),
-                userContent
-            ];
-
-            const generationConfig = {
-                temperature: 0.9,
-                topK: 1,
-                topP: 1,
-                maxOutputTokens: 2048,
-            };
-
-            const safetySettings = [
-                { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
-                { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
-                { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
-                { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
-            ];
-
-            const response = await fetch(`${API_URL}?key=${API_KEY}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    contents: contents,
-                    systemInstruction: {
-                        parts: [
-                            { text: SYSTEM_PROMPT }
-                        ]
-                    },
-                    generationConfig,
-                    safetySettings
-                }),
-            });
-
-            if (!response.ok) {
-                const error = await response.json();
-                console.error('API Error:', error);
-                throw new Error('API request failed');
-            }
-
-            const data = await response.json();
-            if (data.candidates && data.candidates.length > 0) {
-                return data.candidates[0].content.parts[0].text;
-            } else {
-                return "Não recebi uma resposta da IA. Verifique o console para mais detalhes."
-            }
-        }
-
-        async function fileToGenerativePart(file) {
-            const base64EncodedData = await new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.onloadend = () => resolve(reader.result.split(',')[1]);
-                reader.readAsDataURL(file);
-            });
-            return {
-                inlineData: {
-                    mimeType: file.type,
-                    data: base64EncodedData
-                }
-            };
-        }
-
-        // Add message to chat
-        function addMessage(type, content) {
-            const chatMessages = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${type}`;
-            
-            const avatar = type === 'user' ? 'U' : '<img src="logo.png" alt="VS" style="width: 100%; height: 100%; border-radius: 12px;">';
-            const avatarClass = type === 'user' ? 'user-avatar' : 'ai-avatar';
-            const name = type === 'user' ? 'Você' : 'Visual Studio';
-            
-            messageDiv.innerHTML = `
-                <div class="message-avatar ${avatarClass}">${avatar}</div>
-                <div class="message-content">
-                    <h3>${name}</h3>
-                    <div class="message-text">${formatMessage(content)}</div>
-                </div>
+            // Add to chat history
+            const chatHistoryContainer = document.getElementById('chat-history');
+            const newChatItem = document.createElement('div');
+            newChatItem.className = 'chat-history-item';
+            newChatItem.innerHTML = `
+                <span>💬</span>
+                <span>Chat ${currentChatIndex + 1}</span>
             `;
+            newChatItem.onclick = () => loadChat(currentChatIndex);
             
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            // Remove active class from all items
+            document.querySelectorAll('.chat-history-item').forEach(item => {
+                item.classList.remove('active');
+            });
             
-            // Save to messages history
-            if (content) {
-                messages.push({ role: type === 'user' ? 'user' : 'model', content: content });
-            }
+            newChatItem.classList.add('active');
+            chatHistoryContainer.insertBefore(newChatItem, chatHistoryContainer.firstChild);
         }
 
-        // Format message (convert markdown to HTML)
-        function formatMessage(content) {
-            // Basic markdown parsing
-            content = content.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
-            content = content.replace(/`([^`]+)`/g, '<code>$1</code>');
-            content = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            content = content.replace(/\*(.*?)\*/g, '<em>$1</em>');
-            content = content.replace(/\n/g, '<br>');
-            return content;
-        }
-
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', (e) => {
-            const sidebar = document.getElementById('sidebar');
-            const menuToggle = document.querySelector('.menu-toggle');
+        function loadChat(index) {
+            // This would load a specific chat from history
+            currentChatIndex = index;
             
-            if (window.innerWidth <= 768 && sidebar.classList.contains('open')) {
-                if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
-                    sidebar.classList.remove('open');
-                }
+            // Clear messages
+            const messagesContainer = document.getElementById('chat-messages');
+            messagesContainer.innerHTML = '';
+            
+            // Load messages from history
+            if (chatHistory[index]) {
+                chatHistory[index].forEach(msg => {
+                    addMessage(msg.text, msg.sender);
+                });
+            } else {
+                // Add welcome message if no history
+                addMessage('Olá! Sou seu assistente de IA. Como posso ajudar você hoje? 😊', 'ai');
             }
-        });
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            const sidebar = document.getElementById('sidebar');
-            if (window.innerWidth > 768) {
-                sidebar.classList.remove('open');
-            }
-        });
-
-        // Modal logic
-        const videoModal = document.getElementById('videoModal');
-        const webcamBtn = document.getElementById('webcamBtn');
-        const closeModal = document.getElementById('closeModal');
-        const youtubeVideo = document.getElementById('youtubeVideo');
-        const videoSrc = youtubeVideo.src; // Store original src for resetting
-
-        function openVideoModal(videoUrl) {
-            youtubeVideo.src = videoUrl + '?autoplay=1'; // Autoplay the video
-            videoModal.style.display = 'block';
+            
+            // Update active state in sidebar
+            document.querySelectorAll('.chat-history-item').forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
         }
 
-        webcamBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            openVideoModal('https://www.youtube.com/embed/rnXIjl_Rzy4'); // Original Timesquare Server video
-        });
-
-        closeModal.addEventListener('click', () => {
-            videoModal.style.display = 'none';
-            youtubeVideo.src = videoSrc; // Reset video source to stop playback
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target == videoModal) {
-                videoModal.style.display = 'none';
-                youtubeVideo.src = videoSrc; // Reset video source to stop playback
-            }
+        // Initialize the chat
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('message-input');
+            input.focus();
         });
     </script>
 </body>

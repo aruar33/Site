@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png" type="image/png">
+    <title>Projetos - Rodrigo Alves</title>
+    <style>
+        :root {
+            --primary-purple: #9333ea;
+            --primary-yellow: #fbbf24;
+            --primary-blue: #6495ED;
+            --dark-purple: #581c87;
+            --light-purple: #e9d5ff;
+            --dark-yellow: #f59e0b;
+            --light-yellow: #fef3c7;
+            --dark-blue: #1e40af;
+            --light-blue: #dbeafe;
+            --bg-dark: #0a0a14;
+            --bg-light: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b8;
+            --border-color: #2a2a3e;
+            --gradient-main: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-blue) 50%, var(--primary-yellow) 100%);
+            --gradient-secondary: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(100, 149, 237, 0.1) 50%, rgba(251, 191, 36, 0.1) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(100, 149, 237, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(251, 191, 36, 0.05) 0%, transparent 50%);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.9) 0%, rgba(42, 42, 62, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-yellow);
+        }
+
+        .nav-link.active {
+            color: var(--primary-yellow);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-main);
+        }
+
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: var(--gradient-main);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .filter-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .filter-btn {
+            background: var(--gradient-secondary);
+            border: 2px solid rgba(147, 51, 234, 0.2);
+            color: var(--text-primary);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover {
+            background: var(--gradient-main);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(147, 51, 234, 0.3);
+        }
+
+        .filter-btn.active {
+            background: var(--gradient-main);
+            border-color: var(--primary-yellow);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        .project-card {
+            background: linear-gradient(145deg, rgba(42, 42, 62, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
+            border: 1px solid rgba(147, 51, 234, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.2);
+            border-color: var(--primary-purple);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: var(--gradient-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary-yellow);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background: rgba(147, 51, 234, 0.2);
+            color: var(--primary-purple);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .project-link.primary {
+            background: var(--gradient-main);
+            color: white;
+        }
+
+        .project-link.secondary {
+            background: rgba(147, 51, 234, 0.1);
+            color: var(--primary-purple);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(147, 51, 234, 0.3);
+        }
+
+        .stats-section {
+            padding: 60px 0;
+            background: var(--gradient-secondary);
+            margin: 40px 0;
+            border-radius: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: var(--gradient-main);
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-yellow);
+            color: var(--bg-dark);
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4);
+        }
+
+        .footer {
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.9) 0%, rgba(42, 42, 62, 0.9) 100%);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--gradient-main);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .nav-links { gap: 15px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Logo" class="logo-icon">
+                <span class="logo-text">Rodrigo Alves</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="ai_project_site.html" class="nav-link">AI CodeAssist</a>
+                <a href="projects.html" class="nav-link active">Projetos</a>
+                <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" class="nav-link">LinkedIn</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Meus Projetos</h1>
+            <p>Uma coleção de trabalhos inovadores que demonstram expertise em desenvolvimento de software, inteligência artificial e arquitetura de sistemas.</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <h2>Filtrar por Categoria</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterProjects('all')">Todos</button>
+                <button class="filter-btn" onclick="filterProjects('ai')">Inteligência Artificial</button>
+                <button class="filter-btn" onclick="filterProjects('web')">Web Development</button>
+                <button class="filter-btn" onclick="filterProjects('mobile')">Mobile</button>
+                <button class="filter-btn" onclick="filterProjects('cloud')">Cloud & DevOps</button>
+                <button class="filter-btn" onclick="filterProjects('opensource')">Open Source</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-section">
+        <div class="container">
+            <div class="projects-grid" id="projects-grid">
+                <!-- AI CodeAssist Project -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-image">🤖</div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI CodeAssist</h3>
+                        <p class="project-description">
+                            Extensão revolucionária para Visual Studio que utiliza machine learning para oferecer sugestões inteligentes de código, detecção de bugs e otimizações em tempo real.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">ML.NET</span>
+                            <span class="tech-tag">Azure ML</span>
+                            <span class="tech-tag">NLP</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="ai_project_site.html" class="project-link primary">📖 Ver Detalhes</a>
+                            <a href="#" class="project-link secondary">🔗 GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cloud Platform -->
+                <div class="project-card" data-category="cloud">
+                    <div class="project-image">☁️</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Microservices Platform</h3>
+                        <p class="project-description">
+                            Plataforma escalável de microsserviços construída com .NET Core, Docker e Kubernetes, suportando milhões de requisições diárias com alta disponibilidade.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">.NET Core</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">Azure</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">🚀 Live Demo</a>
+                            <a href="#" class="project-link secondary">📄 Documentação</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile App -->
+                <div class="project-card" data-category="mobile">
+                    <div class="project-image">📱</div>
+                    <div class="project-content">
+                        <h3 class="project-title">HealthTracker Pro</h3>
+                        <p class="project-description">
+                            Aplicativo mobile de saúde e fitness com IA para análise de padrões, integração com wearables e recomendações personalizadas de exercícios.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">HealthKit</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">📱 Download</a>
+                            <a href="#" class="project-link secondary">📊 Case Study</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Platform -->
+                <div class="project-card" data-category="web">
+                    <div class="project-image">🌐</div>
+                    <div class="project-content">
+                        <h3 class="project-title">E-Commerce Intelligence</h3>
+                        <p class="project-description">
+                            Plataforma de e-commerce com sistema de recomendação por IA, análise preditiva de vendas e painel analítico em tempo real para tomada de decisões.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">🛒 Visitar Site</a>
+                            <a href="#" class="project-link secondary">📈 Analytics</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Open Source Project -->
+                <div class="project-card" data-category="opensource">
+                    <div class="project-image">🔓</div>
+                    <div class="project-content">
+                        <h3 class="project-title">DevTools Suite</h3>
+                        <p class="project-description">
+                            Conjunto de ferramentas open source para desenvolvedores, incluindo gerador de código, analisador de performance e utilitários de produtividade.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Electron</span>
+                            <span class="tech-tag">Jest</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">⭐ GitHub</a>
+                            <a href="#" class="project-link secondary">📚 npm</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Analytics -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-image">📊</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Predictive Analytics Engine</h3>
+                        <p class="project-description">
+                            Motor de análise preditiva que processa grandes volumes de dados para identificar tendências, prever comportamentos e gerar insights acionáveis para negócios.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">Apache Spark</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Redis</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">📊 Dashboard</a>
+                            <a href="#" class="project-link secondary">📄 Whitepaper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cybersecurity Project -->
+                <div class="project-card" data-category="cloud">
+                    <div class="project-image">🛡️</div>
+                    <div class="project-content">
+                        <h3 class="project-title">SecurityOps Platform</h3>
+                        <p class="project-description">
+                            Plataforma de segurança cibernética com monitoramento em tempo real, detecção de ameaças por IA e resposta automática a incidentes de segurança.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Go</span>
+                            <span class="tech-tag">Elasticsearch</span>
+                            <span class="tech-tag">SIEM</span>
+                            <span class="tech-tag">Machine Learning</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">🔒 Security Dashboard</a>
+                            <a href="#" class="project-link secondary">📋 Compliance</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blockchain Project -->
+                <div class="project-card" data-category="opensource">
+                    <div class="project-image">⛓️</div>
+                    <div class="project-content">
+                        <h3 class="project-title">DeFi Protocol</h3>
+                        <p class="project-description">
+                            Protocolo financeiro descentralizado construído em Ethereum, com smart contracts auditados, interface intuitiva e integração com múltiplas exchanges.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Solidity</span>
+                            <span class="tech-tag">Web3.js</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">IPFS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">💰 Protocol</a>
+                            <a href="#" class="project-link secondary">📊 Analytics</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Projetos Entregues</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Anos de Experiência</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1M+</div>
+                    <div class="stat-label">Usuários Ativos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfação</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Transforme Suas Ideias em Realidade</h2>
+            <p>Combinamos expertise técnica, visão estratégica e paixão por inovação para criar soluções que impulsionam seu negócio.</p>
+            <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" class="cta-button">Vamos Conversar</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <p>&copy; 2024 Rodrigo Alves. Todos os direitos reservados.</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" class="social-link">in</a>
+                    <a href="https://github.com" target="_blank" class="social-link">gh</a>
+                    <a href="mailto:rodrigo.alves@email.com" class="social-link">✉</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // Animate stats on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const finalValue = stat.textContent;
+                        const isPercentage = finalValue.includes('%');
+                        const isPlus = finalValue.includes('+');
+                        const numericValue = parseInt(finalValue.replace(/\D/g, ''));
+                        
+                        let currentValue = 0;
+                        const increment = numericValue / 50;
+                        const timer = setInterval(() => {
+                            currentValue += increment;
+                            if (currentValue >= numericValue) {
+                                currentValue = numericValue;
+                                clearInterval(timer);
+                            }
+                            stat.textContent = Math.floor(currentValue) + (isPlus ? '+' : '') + (isPercentage ? '%' : '');
+                        }, 30);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe stats section
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

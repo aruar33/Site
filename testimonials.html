@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png" type="image/png">
+    <title>Depoimentos - Rodrigo Alves</title>
+    <style>
+        :root {
+            --primary-purple: #9333ea;
+            --primary-yellow: #fbbf24;
+            --primary-blue: #6495ED;
+            --dark-purple: #581c87;
+            --light-purple: #e9d5ff;
+            --dark-yellow: #f59e0b;
+            --light-yellow: #fef3c7;
+            --dark-blue: #1e40af;
+            --light-blue: #dbeafe;
+            --bg-dark: #0a0a14;
+            --bg-light: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b8;
+            --border-color: #2a2a3e;
+            --gradient-main: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-blue) 50%, var(--primary-yellow) 100%);
+            --gradient-secondary: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(100, 149, 237, 0.1) 50%, rgba(251, 191, 36, 0.1) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(100, 149, 237, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(251, 191, 36, 0.05) 0%, transparent 50%);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.9) 0%, rgba(42, 42, 62, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-yellow);
+        }
+
+        .nav-link.active {
+            color: var(--primary-yellow);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-main);
+        }
+
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: var(--gradient-main);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .stats-overview {
+            padding: 60px 0;
+            background: var(--gradient-secondary);
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .testimonials-section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(145deg, rgba(42, 42, 62, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
+            border: 1px solid rgba(147, 51, 234, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.2);
+            border-color: var(--primary-purple);
+        }
+
+        .testimonial-content {
+            margin-bottom: 25px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .testimonial-content::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary-purple);
+            opacity: 0.3;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .author-info h4 {
+            color: var(--primary-yellow);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .author-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .rating {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .star {
+            color: var(--primary-yellow);
+            font-size: 1.2rem;
+        }
+
+        .featured-testimonial {
+            background: var(--gradient-main);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-testimonial::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .featured-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .featured-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .featured-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .featured-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .featured-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .featured-info h4 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .featured-info p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .company-logos {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .company-logos h3 {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: var(--text-secondary);
+        }
+
+        .logos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+
+        .company-logo {
+            background: var(--gradient-secondary);
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-purple);
+            transition: all 0.3s ease;
+        }
+
+        .company-logo:hover {
+            transform: translateY(-5px);
+            background: var(--gradient-main);
+            color: white;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: var(--gradient-main);
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-yellow);
+            color: var(--bg-dark);
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4);
+        }
+
+        .footer {
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.9) 0%, rgba(42, 42, 62, 0.9) 100%);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--gradient-main);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .nav-links { gap: 15px; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .featured-content { grid-template-columns: 1fr; text-align: center; }
+            .company-logos { padding: 40px 0; }
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Logo" class="logo-icon">
+                <span class="logo-text">Rodrigo Alves</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="ai_project_site.html" class="nav-link">AI CodeAssist</a>
+                <a href="projects.html" class="nav-link">Projetos</a>
+                <a href="testimonials.html" class="nav-link active">Depoimentos</a>
+                <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" class="nav-link">LinkedIn</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Depoimentos</h1>
+            <p>O que clientes e parceiros dizem sobre trabalhar com Rodrigo Alves</p>
+        </div>
+    </section>
+
+    <!-- Stats Overview -->
+    <section class="stats-overview">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Clientes Satisfeitos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.9</div>
+                    <div class="stat-label">Avaliação Média</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Recomendação</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Suporte</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experiências Reais</h2>
+                <p class="section-subtitle">Depoimentos autênticos de clientes que transformaram seus negócios com nossas soluções</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-content">
+                        Rodrigo é simplesmente excepcional! Ele desenvolveu nossa plataforma de IA que aumentou nossa produtividade em 300%. Sua expertise técnica combinada com visão de negócio é incomum. Recomendo sem hesitation!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AS</div>
+                        <div class="author-info">
+                            <h4>Ana Silva</h4>
+                            <p>CEO - TechStart Inc.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-content">
+                        Trabalhar com Rodrigo foi uma experiência transformadora. Ele não apenas entregou um projeto de alta qualidade, mas também nos ensinou melhores práticas que continuamos usando até hoje. Um verdadeiro profissional!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JC</div>
+                        <div class="author-info">
+                            <h4>João Costa</h4>
+                            <p>CTO - DigitalBank</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-content">
+                        A expertise de Rodrigo em inteligência artificial e arquitetura de sistemas é impressionante. Ele conseguiu resolver problemas complexos que outros especialistas não conseguiram. Vale cada investimento!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <h4>Maria Rocha</h4>
+                            <p>Product Manager - DataCorp</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-content">
+                        Rodrigo é um líder técnico excepcional. Além de dominar as tecnologias mais avançadas, ele tem uma habilidade única de comunicar conceitos complexos de forma clara e acessível para toda a equipe.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PL</div>
+                        <div class="author-info">
+                            <h4>Pedro Lima</h4>
+                            <p>Engineering Manager - CloudTech</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 5 -->
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-content">
+                        O projeto de segurança cibernética que Rodrigo desenvolveu para nós superou todas as expectativas. Ele não apenas implementou soluções robustas, mas também treinou nossa equipe em segurança proativa.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">CF</div>
+                        <div class="author-info">
+                            <h4>Carla Ferreira</h4>
+                            <p>Security Director - SecureNet</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 6 -->
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-content">
+                        Rodrigo é um arquiteto de software visionário. Ele projetou nossa plataforma de microsserviços que escala para milhões de usuários com uptime de 99.99%. Sua atenção aos detalhes é incomparável.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RS</div>
+                        <div class="author-info">
+                            <h4>Ricardo Santos</h4>
+                            <p>VP Engineering - ScaleUp</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Testimonial -->
+            <div class="featured-testimonial">
+                <div class="featured-content">
+                    <div class="featured-text">
+                        <h3>Experiência Extraordinária</h3>
+                        <p>
+                            "Rodrigo não é apenas um desenvolvedor excepcional, ele é um parceiro estratégico que entende profundamente os objetivos de negócio. 
+                            Ele liderou nossa transformação digital, implementando soluções de IA que geraram economia de milhões de dólares e aumentaram 
+                            nossa eficiência operacional em 400%. Sua capacidade de combinar expertise técnica com visão estratégica o torna único no mercado."
+                        </p>
+                        <div class="featured-author">
+                            <div class="featured-avatar">LM</div>
+                            <div class="featured-info">
+                                <h4>Luiza Mendes</h4>
+                                <p>VP of Innovation - Fortune 500 Company</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Logos -->
+    <section class="company-logos">
+        <div class="container">
+            <h3>Empresas que confiam em nosso trabalho</h3>
+            <div class="logos-grid">
+                <div class="company-logo">TechCorp</div>
+                <div class="company-logo">DataSoft</div>
+                <div class="company-logo">CloudPro</div>
+                <div class="company-logo">SecureNet</div>
+                <div class="company-logo">AI Solutions</div>
+                <div class="company-logo">FutureTech</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Pronto para Transformar Seu Negócio?</h2>
+            <p>Junte-se a centenas de clientes satisfeitos que alcançaram resultados extraordinários com nossas soluções.</p>
+            <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" class="cta-button">Vamos Conversar</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <p>&copy; 2024 Rodrigo Alves. Todos os direitos reservados.</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" class="social-link">in</a>
+                    <a href="https://github.com" target="_blank" class="social-link">gh</a>
+                    <a href="mailto:rodrigo.alves@email.com" class="social-link">✉</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animate stats on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const finalValue = stat.textContent;
+                        const isPercentage = finalValue.includes('%');
+                        const isPlus = finalValue.includes('+');
+                        const isDecimal = finalValue.includes('.');
+                        const numericValue = isDecimal ? parseFloat(finalValue.replace(/\D/g, '')) / 10 : parseInt(finalValue.replace(/\D/g, ''));
+                        
+                        let currentValue = 0;
+                        const increment = numericValue / 50;
+                        const timer = setInterval(() => {
+                            currentValue += increment;
+                            if (currentValue >= numericValue) {
+                                currentValue = numericValue;
+                                clearInterval(timer);
+                            }
+                            if (isDecimal) {
+                                stat.textContent = currentValue.toFixed(1) + (isPlus ? '+' : '') + (isPercentage ? '%' : '');
+                            } else {
+                                stat.textContent = Math.floor(currentValue) + (isPlus ? '+' : '') + (isPercentage ? '%' : '');
+                            }
+                        }, 30);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe stats section
+        const statsSection = document.querySelector('.stats-overview');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation to testimonial cards
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        const cardObserver = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                    cardObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        testimonialCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            cardObserver.observe(card);
+        });
+    </script>
+</body>
+</html>

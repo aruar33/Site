@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png" type="image/png">
+    <title>Contato - Rodrigo Alves</title>
+    <style>
+        :root {
+            --primary-purple: #9333ea;
+            --primary-yellow: #fbbf24;
+            --primary-blue: #6495ED;
+            --dark-purple: #581c87;
+            --light-purple: #e9d5ff;
+            --dark-yellow: #f59e0b;
+            --light-yellow: #fef3c7;
+            --dark-blue: #1e40af;
+            --light-blue: #dbeafe;
+            --bg-dark: #0a0a14;
+            --bg-light: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b8;
+            --border-color: #2a2a3e;
+            --gradient-main: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-blue) 50%, var(--primary-yellow) 100%);
+            --gradient-secondary: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(100, 149, 237, 0.1) 50%, rgba(251, 191, 36, 0.1) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(100, 149, 237, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(251, 191, 36, 0.05) 0%, transparent 50%);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.9) 0%, rgba(42, 42, 62, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-yellow);
+        }
+
+        .nav-link.active {
+            color: var(--primary-yellow);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-main);
+        }
+
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: var(--gradient-main);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .contact-section {
+            padding: 80px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .contact-form {
+            background: linear-gradient(145deg, rgba(42, 42, 62, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
+            border: 1px solid rgba(147, 51, 234, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-yellow);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            background: linear-gradient(145deg, rgba(42, 42, 62, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
+            border: 2px solid rgba(147, 51, 234, 0.2);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-btn {
+            background: var(--gradient-main);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(147, 51, 234, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(147, 51, 234, 0.4);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-card {
+            background: linear-gradient(145deg, rgba(42, 42, 62, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
+            border: 1px solid rgba(147, 51, 234, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(147, 51, 234, 0.2);
+            border-color: var(--primary-purple);
+        }
+
+        .info-card h3 {
+            color: var(--primary-yellow);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .contact-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--primary-yellow);
+        }
+
+        .calculator-section {
+            background: var(--gradient-secondary);
+            border-radius: 20px;
+            padding: 60px;
+            margin: 80px 0;
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .calculator-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .calculator-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .calc-group {
+            background: linear-gradient(145deg, rgba(42, 42, 62, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
+            border: 1px solid rgba(147, 51, 234, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .calc-group h4 {
+            color: var(--primary-yellow);
+            margin-bottom: 20px;
+        }
+
+        .calc-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .calc-option:hover {
+            background: rgba(147, 51, 234, 0.1);
+        }
+
+        .calc-option label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .calc-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-purple);
+        }
+
+        .calc-price {
+            color: var(--primary-yellow);
+            font-weight: 600;
+        }
+
+        .result-section {
+            background: var(--gradient-main);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .total-price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .price-details {
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .get-quote-btn {
+            background: var(--primary-yellow);
+            color: var(--bg-dark);
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3);
+        }
+
+        .get-quote-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4);
+        }
+
+        .map-section {
+            margin: 80px 0;
+        }
+
+        .map-container {
+            background: linear-gradient(145deg, rgba(42, 42, 62, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
+            border: 1px solid rgba(147, 51, 234, 0.1);
+            border-radius: 20px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: var(--gradient-main);
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-yellow);
+            color: var(--bg-dark);
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4);
+        }
+
+        .footer {
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.9) 0%, rgba(42, 42, 62, 0.9) 100%);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--gradient-main);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .nav-links { gap: 15px; }
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .form-row { grid-template-columns: 1fr; }
+            .calculator-form { grid-template-columns: 1fr; }
+            .calculator-section { padding: 40px 20px; }
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Logo" class="logo-icon">
+                <span class="logo-text">Rodrigo Alves</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="ai_project_site.html" class="nav-link">AI CodeAssist</a>
+                <a href="projects.html" class="nav-link">Projetos</a>
+                <a href="testimonials.html" class="nav-link">Depoimentos</a>
+                <a href="contact.html" class="nav-link active">Contato</a>
+                <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" class="nav-link">LinkedIn</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Contato</h1>
+            <p>Vamos conversar sobre seu próximo projeto inovador</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h3 style="color: var(--primary-yellow); margin-bottom: 30px; font-size: 1.8rem;">Envie sua mensagem</h3>
+                    <form id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Nome *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Empresa</label>
+                                <input type="text" id="company" name="company">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefone</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Tipo de Projeto</label>
+                            <select id="service" name="service">
+                                <option value="">Selecione uma opção</option>
+                                <option value="ai">Inteligência Artificial</option>
+                                <option value="web">Desenvolvimento Web</option>
+                                <option value="mobile">Aplicativos Mobile</option>
+                                <option value="cloud">Cloud & DevOps</option>
+                                <option value="security">Cybersecurity</option>
+                                <option value="consulting">Consultoria</option>
+                                <option value="other">Outro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budget">Orçamento Estimado</label>
+                            <select id="budget" name="budget">
+                                <option value="">Selecione uma faixa</option>
+                                <option value="5k-10k">R$ 5K - R$ 10K</option>
+                                <option value="10k-25k">R$ 10K - R$ 25K</option>
+                                <option value="25k-50k">R$ 25K - R$ 50K</option>
+                                <option value="50k-100k">R$ 50K - R$ 100K</option>
+                                <option value="100k+">Acima de R$ 100K</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Mensagem *</label>
+                            <textarea id="message" name="message" placeholder="Descreva seu projeto e objetivos..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Enviar Mensagem</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h3>📧 Email</h3>
+                        <p>Para propostas comerciais e parcerias</p>
+                        <a href="mailto:rodrigo.alves@email.com" class="contact-link">rodrigo.alves@email.com</a>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>📱 Telefone/WhatsApp</h3>
+                        <p>Para atendimento imediato</p>
+                        <a href="tel:+5524998793839" class="contact-link">+55 (24) 99879-3839</a>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>📍 Localização</h3>
+                        <p>São Paulo, Brasil</p>
+                        <p>Atendimento remoto global</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>⏰ Horário de Atendimento</h3>
+                        <p>Segunda - Sexta: 9h - 18h</p>
+                        <p>Sábado: 9h - 12h</p>
+                        <p>Emergências: 24/7</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <div class="container">
+            <div class="calculator-header">
+                <h2>Calculadora de Orçamento</h2>
+                <p>Estime o custo do seu projeto de forma rápida e interativa</p>
+            </div>
+
+            <div class="calculator-form">
+                <div class="calc-group">
+                    <h4>💻 Desenvolvimento Web</h4>
+                    <div class="calc-option">
+                        <label>
+                            <input type="checkbox" data-price="5000" onchange="updateTotal()">
+                            Site Institucional
+                        </label>
+                        <span class="calc-price">R$ 5.000</span>
+                    </div>
+                    <div class="calc-option">
+                        <label>
+                            <input type="checkbox" data-price="15000" onchange="updateTotal()">
+                            E-commerce Completo
+                        </label>
+                        <span class="calc-price">R$ 15.000</span>
+                    </div>
+                    <div class="calc-option">
+                        <label>
+                            <input type="checkbox" data-price="25000" onchange="updateTotal()">
+                            Web App Complexo
+                        </label>
+                        <span class="calc-price">R$ 25.000</span>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <h4>📱 Aplicativos Mobile</h4>
+                    <div class="calc-option">
+                        <label>
+                            <input type="checkbox" data-price="20000" onchange="updateTotal()">
+                            App iOS/Android Simples
+                        </label>
+                        <span class="calc-price">R$ 20.000</span>
+                    </div>
+                    <div class="calc-option">
+                        <label>
+                            <input type="checkbox" data-price="40000" onchange="updateTotal()">
+                            App com IA Avançada
+                        </label>
+                        <span class="calc-price">R$ 40.000</span>
+                    </div>
+                    <div class="calc-option">
+                        <label>
+                            <input type="checkbox" data-price="60000" onchange="updateTotal()">
+                            App Multiplataforma Completo
+                        </label>
+                        <span class="calc-price">R$ 60.000</span>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <h4>🤖 Inteligência Artificial</h4>
+                    <div class="calc-option">
+                        <label>
+                            <input type="checkbox" data-price="30000" onchange="updateTotal()">
+                            Chatbot Inteligente
+                        </label>
+                        <span class="calc-price">R$ 30.000</span>
+                    </div>
+                    <div class="calc-option">
+                        <label>
+                            <input type="checkbox" data-price="50000" onchange="updateTotal()">
+                            Sistema de Recomendação
+                        </label>
+                        <span class="calc-price">R$ 50.000</span>
+                    </div>
+                    <div class="calc-option">
+                        <label>
+                            <input type="checkbox" data-price="80000" onchange="updateTotal()">
+                            Análise Preditiva Completa
+                        </label>
+                        <span class="calc-price">R$ 80.000</span>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <h4>☁️ Cloud & DevOps</h4>
+                    <div class="calc-option">
+                        <label>
+                            <input type="checkbox" data-price="15000" onchange="updateTotal()">
+                            Infraestrutura Cloud Básica
+                        </label>
+                        <span class="calc-price">R$ 15.000</span>
+                    </div>
+                    <div class="calc-option">
+                        <label>
+                            <input type="checkbox" data-price="35000" onchange="updateTotal()">
+                            Pipeline CI/CD Avançado
+                        </label>
+                        <span class="calc-price">R$ 35.000</span>
+                    </div>
+                    <div class="calc-option">
+                        <label>
+                            <input type="checkbox" data-price="55000" onchange="updateTotal()">
+                            Arquitetura Microsserviços
+                        </label>
+                        <span class="calc-price">R$ 55.000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-section">
+                <div class="total-price" id="total-price">R$ 0</div>
+                <div class="price-details">Orçamento estimado para seu projeto</div>
+                <button class="get-quote-btn" onclick="getQuote()">Solicitar Orçamento Detalhado</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-container">
+                🗺️ Mapa Interativo (Google Maps Integration)
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Pronto para Iniciar Seu Projeto?</h2>
+            <p>Entre em contato hoje mesmo e vamos transformar suas ideias em realidade com soluções inovadoras e tecnologia de ponta.</p>
+            <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" class="cta-button">Agendar Consulta Gratuita</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <p>&copy; 2024 Rodrigo Alves. Todos os direitos reservados.</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" class="social-link">in</a>
+                    <a href="https://github.com" target="_blank" class="social-link">gh</a>
+                    <a href="mailto:rodrigo.alves@email.com" class="social-link">✉</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Show success message (in real app, this would send to server)
+            alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
+            this.reset();
+        });
+
+        // Calculator functionality
+        function updateTotal() {
+            const checkboxes = document.querySelectorAll('input[data-price]:checked');
+            let total = 0;
+            
+            checkboxes.forEach(checkbox => {
+                total += parseInt(checkbox.dataset.price);
+            });
+            
+            document.getElementById('total-price').textContent = `R$ ${total.toLocaleString()}`;
+        }
+
+        function getQuote() {
+            const total = document.getElementById('total-price').textContent;
+            if (total === 'R$ 0') {
+                alert('Por favor, selecione pelo menos um serviço para solicitar orçamento.');
+                return;
+            }
+            
+            alert(`Orçamento solicitado! Valor estimado: ${total}. Entrarei em contato com um orçamento detalhado em breve.`);
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation to cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.info-card, .calc-group, .result-section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

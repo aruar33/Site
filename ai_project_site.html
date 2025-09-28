@@ -1,555 +1,61 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI CodeAssist - Visual Studio Project 2019</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-blue: #007ACC;
-            --primary-purple: #6B46C1;
-            --primary-yellow: #FFC107;
-            --dark-blue: #003F7F;
-            --light-purple: #A855F7;
-            --gradient-main: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 50%, var(--primary-yellow) 100%);
-            --gradient-card: linear-gradient(145deg, rgba(0, 122, 204, 0.1), rgba(107, 70, 193, 0.1));
-            --text-primary: #1A1A1A;
-            --text-secondary: #6B7280;
-            --bg-light: #F8FAFC;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            overflow-x: hidden;
-        }
-
-        .hero-section {
-            background: var(--gradient-main);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translateX(0) translateY(0); }
-            25% { transform: translateX(-10px) translateY(-10px); }
-            50% { transform: translateX(-20px) translateY(0); }
-            75% { transform: translateX(-10px) translateY(10px); }
-            100% { transform: translateX(0) translateY(0); }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-content {
-            text-align: center;
-            color: white;
-            padding: 80px 0;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: slideInDown 1s ease-out;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: slideInUp 1s ease-out 0.3s both;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            opacity: 0.8;
-            animation: slideInUp 1s ease-out 0.6s both;
-        }
-
-        @keyframes slideInDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--primary-yellow);
-            color: var(--text-primary);
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
-            animation: slideInUp 1s ease-out 0.9s both;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
-            background: #FFD54F;
-        }
-
-        .main-content {
-            padding: 80px 0;
-        }
-
-        .section {
-            margin-bottom: 80px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            background: var(--gradient-main);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-        }
-
-        .project-info {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-info::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--gradient-main);
-        }
-
-        .project-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .feature-card {
-            background: var(--gradient-card);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 20px;
-            background: var(--gradient-main);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .developer-section {
-            background: white;
-            border-radius: 20px;
-            padding: 50px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            position: relative;
-        }
-
-        .developer-header {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .developer-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: var(--gradient-main);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            flex-shrink: 0;
-        }
-
-        .developer-info h2 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            color: var(--primary-blue);
-        }
-
-        .developer-title {
-            font-size: 1.2rem;
-            color: var(--primary-purple);
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .linkedin-box {
-            background: linear-gradient(135deg, #0077B5, #005885);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            display: inline-block;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .linkedin-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 119, 181, 0.3);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .skill-item {
-            background: var(--gradient-card);
-            padding: 20px;
-            border-radius: 12px;
-            border-left: 4px solid var(--primary-purple);
-        }
-
-        .skill-item h4 {
-            color: var(--primary-blue);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .timeline {
-            position: relative;
-            margin-top: 40px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 30px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: var(--gradient-main);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 80px;
-            margin-bottom: 30px;
-        }
-
-        .timeline-marker {
-            position: absolute;
-            left: 18px;
-            top: 5px;
-            width: 25px;
-            height: 25px;
-            background: var(--primary-yellow);
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .footer {
-            background: var(--dark-blue);
-            color: white;
-            text-align: center;
-            padding: 40px 0;
-        }
-
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .hero-subtitle { font-size: 1.1rem; }
-            .section-title { font-size: 2rem; }
-            .developer-header { flex-direction: column; text-align: center; }
-            .project-info, .developer-section { padding: 30px 20px; }
-            .timeline::before { left: 15px; }
-            .timeline-item { padding-left: 50px; }
-            .timeline-marker { left: 3px; }
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .tech-tag {
-            background: var(--primary-purple);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-    </style>
-</head>
-<body>
-    <!-- Hero Section -->
-    <section class="hero-section">
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">AI CodeAssist</h1>
-                <p class="hero-subtitle">Revolucionando o Visual Studio com Inteligência Artificial</p>
-                <p class="hero-description">
-                    Um projeto inovador desenvolvido em 2019 que transformou a experiência de codificação no Visual Studio, 
-                    integrando algoritmos avançados de machine learning para assistência inteligente ao desenvolvedor.
-                </p>
-                <a href="#project-details" class="cta-button">Explorar Projeto</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <!-- Project Details -->
-            <section id="project-details" class="section">
-                <h2 class="section-title">Sobre o Projeto</h2>
-                <div class="project-info">
-                    <h3 style="color: var(--primary-blue); font-size: 1.8rem; margin-bottom: 20px;">AI CodeAssist - Visual Studio Extension</h3>
-                    <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary);">
-                        Desenvolvido em 2019, o AI CodeAssist representa um marco na evolução das ferramentas de desenvolvimento. 
-                        Esta extensão para Visual Studio utiliza algoritmos de aprendizado de máquina para oferecer sugestões 
-                        inteligentes de código, detecção automática de bugs e otimizações em tempo real. O projeto combina 
-                        tecnologias de ponta em processamento de linguagem natural e análise de código para criar uma 
-                        experiência de desenvolvimento mais eficiente e produtiva.
-                    </p>
-                    
-                    <div class="tech-stack">
-                        <span class="tech-tag">C#</span>
-                        <span class="tech-tag">Machine Learning</span>
-                        <span class="tech-tag">Visual Studio SDK</span>
-                        <span class="tech-tag">Azure ML</span>
-                        <span class="tech-tag">Neural Networks</span>
-                        <span class="tech-tag">NLP</span>
-                    </div>
-                </div>
-
-                <div class="project-features">
-                    <div class="feature-card">
-                        <div class="feature-icon">🧠</div>
-                        <h3 style="color: var(--primary-blue); margin-bottom: 15px;">Inteligência Adaptativa</h3>
-                        <p>Algoritmos que aprendem com o estilo de codificação do desenvolvedor, oferecendo sugestões personalizadas e cada vez mais precisas.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3 style="color: var(--primary-purple); margin-bottom: 15px;">Performance em Tempo Real</h3>
-                        <p>Análise instantânea de código com otimizações que não impactam a performance do IDE, mantendo a fluidez do desenvolvimento.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔍</div>
-                        <h3 style="color: var(--primary-yellow); margin-bottom: 15px; color: #B8860B;">Detecção Inteligente</h3>
-                        <p>Identificação proativa de potenciais bugs, vulnerabilidades de segurança e oportunidades de refatoração automática.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Developer Section -->
-            <section class="section">
-                <h2 class="section-title">Desenvolvedor Principal</h2>
-                <div class="developer-section">
-                    <div class="developer-header">
-                        <div class="developer-avatar">RA</div>
-                        <div class="developer-info">
-                            <h2>Rodrigo Alves</h2>
-                            <p class="developer-title">Senior Software Engineer & AI Specialist</p>
-                            <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" class="linkedin-box">
-                                📎 Conectar no LinkedIn
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <!-- Sobre o Projeto -->
+                    <div class="footer-section">
+                        <h3>🤖 AI CodeAssist</h3>
+                        <p>Transformando o futuro do desenvolvimento com inteligência artificial. Um projeto inovador que revoluciona a experiência de codificação no Visual Studio.</p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" class="social-link" title="LinkedIn">
+                                💼
+                            </a>
+                            <a href="https://github.com" target="_blank" class="social-link" title="GitHub">
+                                💻
+                            </a>
+                            <a href="mailto:contato@rodrigoalves.com" class="social-link" title="Email">
+                                📧
                             </a>
                         </div>
                     </div>
 
-                    <div style="margin-bottom: 40px;">
-                        <h3 style="color: var(--primary-blue); margin-bottom: 20px; font-size: 1.5rem;">Perfil Profissional</h3>
-                        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary);">
-                            Rodrigo Alves é um engenheiro de software sênior com mais de uma década de experiência em desenvolvimento 
-                            de soluções inovadoras. Especialista em inteligência artificial e arquiteturas distribuídas, Rodrigo 
-                            combina expertise técnica profunda com uma visão estratégica para produtos de tecnologia. Certificado 
-                            em metodologias ágeis e com forte background em cybersegurança, ele lidera projetos que transformam 
-                            a maneira como desenvolvedores interagem com suas ferramentas de trabalho.
-                        </p>
+                    <!-- Links Rápidos -->
+                    <div class="footer-section">
+                        <h3>🔗 Links Rápidos</h3>
+                        <p><a href="index.html">🏠 Página Principal</a></p>
+                        <p><a href="projects.html">📁 Projetos</a></p>
+                        <p><a href="testimonials.html">💬 Depoimentos</a></p>
+                        <p><a href="contact.html">📞 Contatos</a></p>
                     </div>
 
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <h4>🚀 Scrum Master Certified</h4>
-                            <p>Liderança em metodologias ágeis, facilitando equipes de alto desempenho e entrega contínua de valor. Especialista em Sprint Planning, Retrospectives e Continuous Improvement.</p>
+                    <!-- Informações de Contato -->
+                    <div class="footer-section">
+                        <h3>📞 Contato</h3>
+                        <div class="contact-item">
+                            <span>📞</span>
+                            <span><strong>Telefone:</strong> +55 (24) 998793839</span>
                         </div>
-                        <div class="skill-item">
-                            <h4>🛡️ Cybersecurity Expert</h4>
-                            <p>Implementação de práticas de segurança em todo ciclo de desenvolvimento (DevSecOps), análise de vulnerabilidades e arquitetura de sistemas seguros.</p>
+                        <div class="contact-item">
+                            <span>📍</span>
+                            <span><strong>Localização:</strong> Volta Redonda - RJ</span>
                         </div>
-                        <div class="skill-item">
-                            <h4>🤖 AI/ML Engineering</h4>
-                            <p>Desenvolvimento de soluções de inteligência artificial, desde prototipação até produção, incluindo MLOps e otimização de modelos neurais.</p>
+                        <div class="contact-item">
+                            <span>📧</span>
+                            <span><strong>Email:</strong> contato@rodrigoalves.com</span>
                         </div>
-                        <div class="skill-item">
-                            <h4>☁️ Cloud Architecture</h4>
-                            <p>Design e implementação de arquiteturas escaláveis em Azure, AWS e Google Cloud, com foco em microserviços e containerização.</p>
-                        </div>
-                        <div class="skill-item">
-                            <h4>📊 Data Engineering</h4>
-                            <p>Construção de pipelines de dados robustos, data lakes e soluções de analytics em tempo real para suportar decisões baseadas em dados.</p>
-                        </div>
-                        <div class="skill-item">
-                            <h4>👥 Technical Leadership</h4>
-                            <p>Mentoria de desenvolvedores, arquitetura de soluções complexas e alinhamento técnico com objetivos de negócio em organizações de grande escala.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline">
-                        <h3 style="color: var(--primary-blue); margin-bottom: 30px; font-size: 1.5rem;">Marcos Profissionais</h3>
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                                <h4 style="color: var(--primary-purple); margin-bottom: 10px;">2019 - AI CodeAssist Project</h4>
-                                <p>Liderou o desenvolvimento do projeto AI CodeAssist para Visual Studio, revolucionando a experiência de codificação com inteligência artificial integrada.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                                <h4 style="color: var(--primary-purple); margin-bottom: 10px;">2020-2022 - Digital Transformation</h4>
-                                <p>Arquiteto principal em iniciativas de transformação digital, implementando soluções cloud-native e práticas DevSecOps em organizações Fortune 500.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                                <h4 style="color: var(--primary-purple); margin-bottom: 10px;">2023-Presente - AI Innovation</h4>
-                                <p>Liderança em projetos de IA generativa e automação inteligente, focando em soluções que aumentam a produtividade e qualidade do desenvolvimento de software.</p>
-                            </div>
+                        <div class="contact-item">
+                            <span>🌐</span>
+                            <span><strong>Site:</strong> www.rodrigoalves.com</span>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 AI CodeAssist Project. Desenvolvido por Rodrigo Alves.</p>
-            <p style="margin-top: 10px; opacity: 0.8;">Transformando o futuro do desenvolvimento com inteligência artificial.</p>
+                <!-- Footer Bottom -->
+                <div class="footer-bottom">
+                    <p>&copy; 2024 AI CodeAssist Project. Desenvolvido por Rodrigo Alves. Todos os direitos reservados.</p>
+                    <p style="margin-top: 5px;">🚀 Inovação • 🎯 Excelência • 💡 Tecnologia</p>
+                </div>
+            </div>
         </div>
     </footer>
-
-    <script>
-        // Smooth scrolling para links internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Animação de entrada para elementos quando entram na viewport
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Aplicar animação aos cards e seções
-        document.querySelectorAll('.feature-card, .skill-item, .timeline-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-
-        // Efeito parallax suave no hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroSection = document.querySelector('.hero-section');
-            if (heroSection) {
-                heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-    </script>
-</body>
-</html>
