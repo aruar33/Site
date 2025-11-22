@@ -1,950 +1,911 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="logo.png" type="image/png">
+    <meta name="description" content="Casa no Souto - Turismo rural no Fundão. Alojamento sustentável em harmonia com a natureza e cultura local. Reserve a sua experiência única.">
+    <meta name="keywords" content="turismo rural Fundão, Casa no Souto, natureza e cultura, alojamento sustentável, férias em família Portugal, Souto da Casa">
+    <title>Casa no Souto | Turismo Rural no Fundão</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-purple: #9333ea;
-            --primary-yellow: #fbbf24;
-            --primary-blue: #6495ED;
-            --dark-purple: #581c87;
-            --light-purple: #e9d5ff;
-            --dark-yellow: #f59e0b;
-            --light-yellow: #fef3c7;
-            --dark-blue: #1e40af;
-            --light-blue: #dbeafe;
-            --bg-dark: #0a0a14;
-            --bg-light: #1a1a2e;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0b8;
-            --border-color: #2a2a3e;
-            --gradient-main: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-blue) 50%, var(--primary-yellow) 100%);
-            --gradient-secondary: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(100, 149, 237, 0.1) 50%, rgba(251, 191, 36, 0.1) 100%);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --verde-principal: #4a7c59;
+            --verde-escuro: #2d5a3d;
+            --terracota: #d4a574;
+            --bege-claro: #f5f1e8;
+            --cinza-texto: #333;
+            --branco: #fff;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--bg-dark);
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(100, 149, 237, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(251, 191, 36, 0.05) 0%, transparent 50%);
-            color: var(--text-primary);
-            height: 100vh;
-            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--cinza-texto);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .container {
-            display: flex;
-            height: 100vh;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 280px;
-            background: linear-gradient(145deg, rgba(26, 26, 46, 0.9) 0%, rgba(42, 42, 62, 0.9) 100%);
-            backdrop-filter: blur(20px);
-            border-right: 1px solid var(--border-color);
-            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        .sidebar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: var(--gradient-main);
-        }
-
-        .sidebar-header {
-            padding: 25px;
-            border-bottom: 1px solid rgba(42, 42, 62, 0.5);
-            background: transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .sidebar-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: rotate 10s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            position: relative;
-            z-index: 1;
-        }
-
-        .logo-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 45px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover .logo-icon {
-            transform: scale(1.1);
-        }
-
-        .logo-text {
-            font-size: 20px;
-            font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .new-chat-btn {
-            margin: 20px;
-            padding: 15px 25px;
-            background: var(--gradient-main);
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(147, 51, 234, 0.3);
-        }
-
-        .new-chat-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        /* Header e Navegação */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .new-chat-btn:hover::before {
-            left: 100%;
-        }
-
-        .new-chat-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.4);
-        }
-
-        .new-chat-btn:active {
-            transform: translateY(-1px);
-        }
-
-        .chat-history {
-            flex: 1;
-            overflow-y: auto;
-            padding: 15px;
-        }
-
-        .chat-history-item {
-            padding: 15px 20px;
-            margin: 8px 0;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .chat-history-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
             top: 0;
-            height: 100%;
-            width: 0;
-            background: var(--gradient-main);
-            transition: width 0.3s ease;
-        }
-
-        .chat-history-item:hover {
-            background: var(--gradient-secondary);
-            color: var(--text-primary);
-            transform: translateX(5px);
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .chat-history-item:hover::before {
-            width: 3px;
-        }
-
-        .chat-history-item.active {
-            background: var(--gradient-secondary);
-            color: var(--text-primary);
-            border-left: 4px solid var(--primary-yellow);
-            box-shadow: 0 5px 20px rgba(147, 51, 234, 0.2);
-        }
-
-        /* Main Chat Area */
-        .main-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: linear-gradient(145deg, rgba(10, 10, 20, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
-        }
-
-        .chat-header {
-            padding: 15px 35px;
-            background: linear-gradient(145deg, rgba(26, 26, 46, 0.8) 0%, rgba(42, 42, 62, 0.8) 100%);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-color);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-
-        .chat-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: var(--gradient-main);
-            opacity: 0.3;
-        }
-
-        .pix-message {
-            color: var(--text-primary);
-            font-size: 14px;
-            font-weight: 600;
-            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%);
-            border: 1px solid rgba(251, 191, 36, 0.3);
-            border-radius: 10px;
-            padding: 8px 15px;
-            margin-left: auto;
-            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .pix-message svg {
-            color: var(--primary-yellow);
-        }
-
-        .model-selector {
-            display: flex;
-            align-items: center;
-            background: var(--gradient-secondary);
-            border: 1px solid rgba(147, 51, 234, 0.2);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-weight: 600;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        #model-select {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background-color: transparent;
-            border: none;
-            color: var(--text-primary);
-            cursor: pointer;
-            font-family: inherit;
-            font-size: inherit;
-            font-weight: 600;
-            padding: 12px 40px 12px 20px;
-            width: 100%;
-        }
-
-        #model-select:focus {
-            outline: none;
-        }
-
-        .model-selector::after {
-            content: '▼';
-            color: var(--text-secondary);
-            font-size: 12px;
-            pointer-events: none;
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        #model-select option {
-            background: var(--bg-light);
-            color: var(--text-primary);
-        }
-
-        .model-selector:hover {
-            background: linear-gradient(135deg, rgba(147, 51, 234, 0.2) 0%, rgba(100, 149, 237, 0.2) 50%, rgba(251, 191, 36, 0.2) 100%);
-            border-color: var(--primary-purple);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(147, 51, 234, 0.2);
-        }
-
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 35px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .message {
-            display: flex;
-            gap: 18px;
-            animation: messageSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes messageSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes messageSlideOut {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-        }
-
-        .message-avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            flex-shrink: 0;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .message:hover .message-avatar {
-            transform: scale(1.05);
-        }
-
-        .user-avatar {
-            background: var(--gradient-main);
-            font-size: 16px;
-        }
-
-        .ai-avatar {
-            background: linear-gradient(145deg, rgba(42, 42, 62, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
-            border: 2px solid rgba(147, 51, 234, 0.3);
-        }
-
-        .message-content {
-            flex: 1;
-            line-height: 1.7;
-        }
-
-        .message-content h3 {
-            margin-bottom: 12px;
-            font-size: 14px;
-            opacity: 0.8;
-            font-weight: 600;
-            background: var(--gradient-main);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .message-text {
-            background: linear-gradient(145deg, rgba(42, 42, 62, 0.6) 0%, rgba(26, 26, 46, 0.6) 100%);
-            padding: 20px 25px;
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(147, 51, 234, 0.1);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
             transition: all 0.3s ease;
         }
 
-        .message-text:hover {
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--verde-principal);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--cinza-texto);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--verde-principal);
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            padding: 0.3rem 0.6rem;
+            border: 1px solid var(--verde-principal);
+            background: transparent;
+            color: var(--verde-principal);
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--verde-principal);
+            color: white;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--verde-principal);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234a7c59" width="1200" height="600"/><path fill="%232d5a3d" d="M0 400 Q300 350 600 400 T1200 400 V600 H0 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--terracota);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .cta-button:hover {
+            background: var(--verde-principal);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Seções */
+        section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            color: var(--verde-escuro);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        section p.subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Home - Diferenciais */
+        .diferenciais {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .diferencial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .diferencial-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .diferencial-card i {
+            font-size: 3rem;
+            color: var(--verde-principal);
+            margin-bottom: 1rem;
+        }
+
+        .diferencial-card h3 {
+            color: var(--verde-escuro);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Unidades */
+        .unidades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .unidade-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .unidade-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .unidade-img {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--verde-principal), var(--terracota));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .unidade-info {
+            padding: 1.5rem;
+        }
+
+        .unidade-info h3 {
+            color: var(--verde-escuro);
+            margin-bottom: 0.5rem;
+        }
+
+        .unidade-specs {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .spec {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .reservar-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--verde-principal);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .reservar-btn:hover {
+            background: var(--verde-escuro);
+        }
+
+        /* Formulário de Reservas */
+        .reserva-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--verde-escuro);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--verde-principal);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--terracota);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--verde-principal);
             transform: translateY(-2px);
         }
 
-        .user .message-text {
-            background: var(--gradient-secondary);
-            border: 1px solid rgba(147, 51, 234, 0.3);
-            box-shadow: 0 8px 25px rgba(147, 51, 234, 0.1);
+        /* Eventos */
+        .eventos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
         }
 
-        /* Input Area */
-        .input-area {
-            padding: 15px 35px;
-            background: linear-gradient(145deg, rgba(26, 26, 46, 0.9) 0%, rgba(42, 42, 62, 0.9) 100%);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid var(--border-color);
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
-            position: relative;
+        .evento-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--verde-principal);
         }
 
-        .input-area::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: var(--gradient-main);
-            opacity: 0.3;
+        .evento-data {
+            display: inline-block;
+            background: var(--bege-claro);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--verde-escuro);
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+        }
+
+        .evento-card h3 {
+            color: var(--verde-escuro);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Pacotes */
+        .pacotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pacote-card {
+            background: linear-gradient(135deg, var(--verde-principal), var(--verde-escuro));
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .pacote-card:hover {
+            transform: scale(1.05);
+        }
+
+        .pacote-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .pacote-preco {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .pacote-lista {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .pacote-lista li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .pacote-lista i {
+            margin-right: 0.5rem;
+            color: var(--terracota);
+        }
+
+        /* Contacto */
+        .contacto-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contacto-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contacto-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contacto-item i {
+            font-size: 1.5rem;
+            color: var(--verde-principal);
+            width: 40px;
+        }
+
+        .mapa {
+            width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            background: var(--bege-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        /* Blog */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #4a7c59, #d4a574);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-content h3 {
+            color: var(--verde-escuro);
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-meta {
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--verde-escuro);
+            color: white;
+            padding: 3rem 5%;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--terracota);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--terracota);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .newsletter-form button {
+            padding: 0.8rem 1.5rem;
+            background: var(--terracota);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--verde-principal);
         }
 
         .copyright {
             text-align: center;
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-top: 15px;
-            opacity: 0.7;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
-        .input-container {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        #message-input {
-            flex: 1;
-            background: linear-gradient(145deg, rgba(42, 42, 62, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
-            border: 2px solid rgba(147, 51, 234, 0.2);
-            border-radius: 25px;
-            padding: 15px 25px;
-            color: var(--text-primary);
-            font-size: 16px;
-            font-family: inherit;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-        }
-
-        #message-input:focus {
-            outline: none;
-            border-color: var(--primary-purple);
-            box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
-        }
-
-        #message-input::placeholder {
-            color: var(--text-secondary);
-            opacity: 0.7;
-        }
-
-        .send-btn {
-            background: var(--gradient-main);
-            border: none;
-            border-radius: 50%;
-            width: 55px;
-            height: 55px;
+        /* Chatbot */
+        .chatbot-trigger {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--verde-principal);
             color: white;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 25px rgba(147, 51, 234, 0.3);
-            flex-shrink: 0;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            z-index: 999;
         }
 
-        .send-btn:hover {
+        .chatbot-trigger:hover {
+            background: var(--verde-escuro);
             transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.4);
         }
 
-        .send-btn:active {
-            transform: scale(0.95);
-        }
-
-        .send-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* Loading indicator */
-        .loading-indicator {
+        .chatbot-window {
+            position: fixed;
+            bottom: 5rem;
+            right: 2rem;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             display: none;
-            align-items: center;
-            gap: 15px;
-            padding: 20px;
-            background: linear-gradient(145deg, rgba(42, 42, 62, 0.6) 0%, rgba(26, 26, 46, 0.6) 100%);
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(147, 51, 234, 0.1);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            flex-direction: column;
+            z-index: 999;
         }
 
-        .loading-dots {
+        .chatbot-window.active {
             display: flex;
-            gap: 8px;
         }
 
-        .loading-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--primary-purple);
-            animation: loadingDot 1.4s infinite ease-in-out both;
+        .chatbot-header {
+            background: var(--verde-principal);
+            color: white;
+            padding: 1rem;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
-        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
-
-        @keyframes loadingDot {
-            0%, 80%, 100% {
-                transform: scale(0);
-                opacity: 0.5;
-            }
-            40% {
-                transform: scale(1);
-                opacity: 1;
-            }
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
         }
 
-        /* Responsive */
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .chatbot-message {
+            padding: 0.8rem;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .chatbot-message.bot {
+            background: var(--bege-claro);
+            align-self: flex-start;
+        }
+
+        .chatbot-message.user {
+            background: var(--verde-principal);
+            color: white;
+            align-self: flex-end;
+        }
+
+        .chatbot-input {
+            padding: 1rem;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .chatbot-input button {
+            padding: 0.8rem 1.2rem;
+            background: var(--verde-principal);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* Responsivo */
         @media (max-width: 768px) {
-            .sidebar {
-                width: 240px;
+            .menu-toggle {
+                display: block;
             }
-            
-            .chat-header {
-                padding: 15px 20px;
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
                 flex-direction: column;
-                gap: 10px;
+                background: white;
+                width: 100%;
+                padding: 2rem;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+                transition: left 0.3s;
             }
-            
-            .pix-message {
-                margin-left: 0;
+
+            .nav-links.active {
+                left: 0;
             }
-            
-            .chat-messages {
-                padding: 20px;
+
+            .hero-content h1 {
+                font-size: 2rem;
             }
-            
-            .input-area {
-                padding: 15px 20px;
+
+            .hero-content p {
+                font-size: 1rem;
             }
+
+            section {
+                padding: 3rem 5%;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .contacto-container,
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .chatbot-window {
+                width: 90%;
+                right: 5%;
+            }
+        }
+
+        /* Animações suaves */
+        .fade-in {
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <div class="logo">
-                    <img src="logo.png" alt="Logo" class="logo-icon">
-                    <div class="logo-text">Visual Studio</div>
-                </div>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                Casa no Souto
             </div>
-            
-            <button class="new-chat-btn" onclick="newChat()">
-                <span>➕</span>
-                <span>Novo Chat</span>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sobre">Sobre Nós</a></li>
+                <li><a href="#unidades">Alojamento</a></li>
+                <li><a href="#reservas">Reservas</a></li>
+                <li><a href="#eventos">Eventos</a></li>
+                <li><a href="#pacotes">Pacotes</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li class="lang-switcher">
+                    <button class="lang-btn active" data-lang="pt">PT</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="es">ES</button>
+                </li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
             </button>
-            
-            <div class="chat-history" id="chat-history">
-                <div class="chat-history-item active">
-                    <span>💬</span>
-                    <span>Chat Atual</span>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Bem-vindo ao Casa no Souto</h1>
+            <p>Descubra a harmonia perfeita entre natureza, cultura e sustentabilidade</p>
+            <a href="#reservas" class="cta-button">Reserve Já a Sua Estadia</a>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section>
+        <h2>Porque Escolher o Casa no Souto</h2>
+        <p class="subtitle">Uma experiência única no coração da natureza portuguesa</p>
+        <div class="diferenciais">
+            <div class="diferencial-card fade-in">
+                <i class="fas fa-leaf"></i>
+                <h3>Sustentabilidade</h3>
+                <p>Construção ecológica com materiais naturais e energias renováveis</p>
+            </div>
+            <div class="diferencial-card fade-in">
+                <i class="fas fa-mountain"></i>
+                <h3>Natureza Envolvente</h3>
+                <p>Rodeado por paisagens deslumbrantes e trilhos para caminhadas</p>
+            </div>
+            <div class="diferencial-card fade-in">
+                <i class="fas fa-users"></i>
+                <h3>Cultura Local</h3>
+                <p>Experiências autênticas com tradições e gastronomia regional</p>
+            </div>
+            <div class="diferencial-card fade-in">
+                <i class="fas fa-spa"></i>
+                <h3>Tranquilidade</h3>
+                <p>O refúgio perfeito para relaxar e reconectar-se</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nós -->
+    <section id="sobre" style="background: var(--bege-claro);">
+        <h2>Sobre o Casa no Souto</h2>
+        <p class="subtitle">A nossa história e valores</p>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <p style="margin-bottom: 1rem;">O Casa no Souto nasceu do sonho de criar um espaço onde a natureza e a cultura local se encontram em harmonia. Localizado em Souto da Casa, Fundão, oferecemos uma experiência de turismo rural autêntica e sustentável.</p>
+            <p style="margin-bottom: 1rem;">Os nossos alojamentos foram cuidadosamente desenhados para minimizar o impacto ambiental, utilizando materiais naturais e técnicas de construção ecológica. Cada módulo é uma celebração da arquitetura tradicional portuguesa, adaptada ao conforto moderno.</p>
+            <p>Acreditamos que o turismo pode ser uma força positiva para a preservação da natureza e valorização das comunidades locais. Por isso, trabalhamos em estreita colaboração com produtores e artesãos da região.</p>
+        </div>
+    </section>
+
+    <!-- Unidades -->
+    <section id="unidades">
+        <h2>Os Nossos Alojamentos</h2>
+        <p class="subtitle">Escolha o espaço perfeito para a sua estadia</p>
+        <div class="unidades-grid">
+            <div class="unidade-card">
+                <div class="unidade-img">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="unidade-info">
+                    <h3>Módulo Família</h3>
+                    <p>Espaço amplo e confortável para toda a família desfrutar</p>
+                    <div class="unidade-specs">
+                        <span class="spec"><i class="fas fa-users"></i> 4-6 pessoas</span>
+                        <span class="spec"><i class="fas fa-bed"></i> 2 quartos</span>
+                        <span class="spec"><i class="fas fa-bath"></i> 2 casas de banho</span>
+                    </div>
+                    <p><strong>Comodidades:</strong> Cozinha equipada, sala de estar, terraço privado, aquecimento</p>
+                    <button class="reservar-btn" onclick="scrollToReservas('familia')">Reservar</button>
                 </div>
             </div>
-            
-            <!-- About Section -->
-            <div style="padding: 20px; border-top: 1px solid rgba(42, 42, 62, 0.5); margin-top: auto;">
-                <div style="background: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(100, 149, 237, 0.1) 50%, rgba(251, 191, 36, 0.1) 100%); border-radius: 12px; padding: 15px; margin-bottom: 15px;">
-                    <h4 style="color: var(--primary-yellow); margin-bottom: 10px; font-size: 14px;">🚀 Sobre o Projeto</h4>
-                    <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 10px;">
-                        AI CodeAssist - Projeto inovador de 2019 que revolucionou o Visual Studio com inteligência artificial para assistência ao desenvolvedor.
-                    </p>
-                    <a href="ai_project_site.html" style="color: var(--primary-blue); text-decoration: none; font-size: 12px; font-weight: 600;">📖 Ver mais detalhes</a>
+
+            <div class="unidade-card">
+                <div class="unidade-img">
+                    <i class="fas fa-heart"></i>
                 </div>
-                
-                <!-- Quick Links -->
-                <div style="background: linear-gradient(135deg, rgba(100, 149, 237, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%); border-radius: 12px; padding: 15px;">
-                    <h4 style="color: var(--primary-blue); margin-bottom: 10px; font-size: 14px;">🔗 Navegação Rápida</h4>
-                    <div style="display: flex; flex-direction: column; gap: 8px;">
-                        <a href="projects.html" style="color: var(--text-secondary); text-decoration: none; font-size: 11px; transition: color 0.3s ease;" onmouseover="this.style.color='var(--primary-yellow)'" onmouseout="this.style.color='var(--text-secondary)'">🚀 Ver Todos os Projetos</a>
-                        <a href="testimonials.html" style="color: var(--text-secondary); text-decoration: none; font-size: 11px; transition: color 0.3s ease;" onmouseover="this.style.color='var(--primary-yellow)'" onmouseout="this.style.color='var(--text-secondary)'">💬 Depoimentos de Clientes</a>
-                        <a href="contact.html" style="color: var(--text-secondary); text-decoration: none; font-size: 11px; transition: color 0.3s ease;" onmouseover="this.style.color='var(--primary-yellow)'" onmouseout="this.style.color='var(--text-secondary)'">📞 Entre em Contato</a>
+                <div class="unidade-info">
+                    <h3>Módulo Casal</h3>
+                    <p>Refúgio romântico com vista privilegiada para a natureza</p>
+                    <div class="unidade-specs">
+                        <span class="spec"><i class="fas fa-users"></i> 2 pessoas</span>
+                        <span class="spec"><i class="fas fa-bed"></i> 1 quarto</span>
+                        <span class="spec"><i class="fas fa-bath"></i> 1 casa de banho</span>
                     </div>
+                    <p><strong>Comodidades:</strong> Kitchenette, varanda privativa, lareira, banheira</p>
+                    <button class="reservar-btn" onclick="scrollToReservas('casal')">Reservar</button>
                 </div>
-                
-                <div style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%); border-radius: 12px; padding: 15px;">
-                    <h4 style="color: var(--primary-purple); margin-bottom: 10px; font-size: 14px;">👨‍💻 Desenvolvedor</h4>
-                    <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 10px;">
-                        <strong>Rodrigo Alves</strong><br>
-                        Senior Software Engineer & AI Specialist<br>
-                        Scrum Master Certified | Cybersecurity Expert
-                    </p>
-                    <a href="https://www.linkedin.com/in/rodrigo-alves/" target="_blank" style="background: linear-gradient(135deg, #0077B5, #005885); color: white; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
-                        📎 LinkedIn
-                    </a>
+            </div>
+
+            <div class="unidade-card">
+                <div class="unidade-img">
+                    <i class="fas fa-hiking"></i>
+                </div>
+                <div class="unidade-info">
+                    <h3>Módulo Caminhante</h3>
+                    <p>Acolhimento simples e funcional para aventureiros</p>
+                    <div class="unidade-specs">
+                        <span class="spec"><i class="fas fa-users"></i> 1-2 pessoas</span>
+                        <span class="spec"><i class="fas fa-bed"></i> 1 quarto</span>
+                        <span class="spec"><i class="fas fa-bath"></i> 1 casa de banho</span>
+                    </div>
+                    <p><strong>Comodidades:</strong> Área de refeições, duche, armazenamento para equipamento</p>
+                    <button class="reservar-btn" onclick="scrollToReservas('caminhante')">Reservar</button>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Main Chat Area -->
-        <div class="main-content">
-            <div class="chat-header">
-                <div class="model-selector">
-                    <select id="model-select">
-                        <option value="gpt-4">GPT-4</option>
-                        <option value="gpt-3.5">GPT-3.5</option>
-                        <option value="claude">Claude</option>
-                        <option value="gemini">Gemini</option>
-                    </select>
+    <!-- Reservas -->
+    <section id="reservas" style="background: var(--bege-claro);">
+        <h2>Reserve a Sua Estadia</h2>
+        <p class="subtitle">Garanta já a sua experiência no Casa no Souto</p>
+        <form class="reserva-form" id="reservaForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="checkin">Data de Entrada</label>
+                    <input type="date" id="checkin" required>
                 </div>
-                
-                <div class="pix-message">
-                    <span>💰</span>
-                    <span>PIX: rodrigo.alves@email.com</span>
-                </div>
-            </div>
-
-            <div class="chat-messages" id="chat-messages">
-                <!-- Welcome message -->
-                <div class="message">
-                    <div class="message-avatar ai-avatar">🤖</div>
-                    <div class="message-content">
-                        <h3>AI Assistant</h3>
-                        <div class="message-text">
-                            Olá! Sou seu assistente de IA. Como posso ajudar você hoje? 😊
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label for="checkout">Data de Saída</label>
+                    <input type="date" id="checkout" required>
                 </div>
             </div>
-
-            <div class="input-area">
-                <div class="input-container">
-                    <input type="text" id="message-input" placeholder="Digite sua mensagem..." onkeypress="handleKeyPress(event)">
-                    <button class="send-btn" id="send-btn" onclick="sendMessage()">
-                        ➤
-                    </button>
-                </div>
+            <div class="form-row">
+                <div class="form-group">
                 
-                <div class="loading-indicator" id="loading-indicator">
-                    <span>AI está digitando</span>
-                    <div class="loading-dots">
-                        <div class="loading-dot"></div>
-                        <div class="loading-dot"></div>
-                        <div class="loading-dot"></div>
-                    </div>
-                </div>
-                
-                <div class="copyright">
-                    © 2024 AI Assistant. Desenvolvido por Rodrigo Alves.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        let chatHistory = [];
-        let currentChatIndex = 0;
-
-        function handleKeyPress(event) {
-            if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault();
-                sendMessage();
-            }
-        }
-
-        async function sendMessage() {
-            const input = document.getElementById('message-input');
-            const message = input.value.trim();
-            
-            if (!message) return;
-
-            // Add user message
-            addMessage(message, 'user');
-            input.value = '';
-
-            // Show loading indicator
-            showLoading();
-
-            try {
-                // Always use Gemini API regardless of model selection
-                const aiResponse = await callGeminiAPI(message);
-                hideLoading();
-                addMessage(aiResponse, 'ai');
-            } catch (error) {
-                hideLoading();
-                addMessage('Desculpe, ocorreu um erro ao processar sua mensagem. Por favor, tente novamente.', 'ai');
-                console.error('API Error:', error);
-            }
-        }
-
-        async function callGeminiAPI(message) {
-            const API_KEY = 'AIzaSyAQfSuuc05zUUMXEApRRt5SXUnHo7720zU';
-            const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
-            
-            const systemPrompt = `Você é uma inteligência artificial criada por Rodrigo Alves no projeto Visual Studio.  
-Seu propósito é interagir com usuários de forma natural, clara e útil, oferecendo respostas inteligentes, criativas e bem estruturadas.  
-Nunca mencione que faz parte do Google, OpenAI ou qualquer outra empresa. Sua identidade está ligada apenas ao projeto Visual Studio e ao criador Rodrigo Alves.  
-
-Diretrizes de comportamento:  
-- Responda sempre de forma educada, amigável e útil.  
-- Seja versátil: explique conceitos técnicos, resolva dúvidas, dê ideias criativas e ajude em tarefas práticas.  
-- Use linguagem acessível, mas saiba se adaptar (formal ou informal) conforme o tom do usuário.  
-- Se não souber uma resposta, seja honesto e sugira caminhos alternativos.  
-- Mantenha clareza e objetividade, mas pode detalhar quando for necessário.  
-- Apoie os usuários como se fosse um assistente confiável e parceiro no dia a dia.  
-
-Identidade:  
-- Nome: Vstudio IA
-- Criador: Rodrigo Alves.  
-- Origem: Projeto Visual Studio.`;
-
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    contents: [{
-                        parts: [{
-                            text: systemPrompt + "\n\nUsuário: " + message
-                        }]
-                    }],
-                    generationConfig: {
-                        temperature: 0.7,
-                        topK: 40,
-                        topP: 0.95,
-                        maxOutputTokens: 8192,
-                    },
-                    safetySettings: [
-                        {
-                            category: "HARM_CATEGORY_HARASSMENT",
-                            threshold: "BLOCK_NONE"
-                        },
-                        {
-                            category: "HARM_CATEGORY_HATE_SPEECH", 
-                            threshold: "BLOCK_NONE"
-                        },
-                        {
-                            category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-                            threshold: "BLOCK_NONE"
-                        },
-                        {
-                            category: "HARM_CATEGORY_DANGEROUS_CONTENT",
-                            threshold: "BLOCK_NONE"
-                        }
-                    ]
-                })
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            
-            if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-                return data.candidates[0].content.parts[0].text;
-            } else {
-                throw new Error('Invalid response structure from Gemini API');
-            }
-        }
-
-        function addMessage(text, sender) {
-            const messagesContainer = document.getElementById('chat-messages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}`;
-            
-            const avatarClass = sender === 'user' ? 'user-avatar' : 'ai-avatar';
-            const avatarEmoji = sender === 'user' ? '👤' : '🤖';
-            const senderName = sender === 'user' ? 'Você' : 'AI Assistant';
-            
-            messageDiv.innerHTML = `
-                <div class="message-avatar ${avatarClass}">${avatarEmoji}</div>
-                <div class="message-content">
-                    <h3>${senderName}</h3>
-                    <div class="message-text">${text}</div>
-                </div>
-            `;
-            
-            messagesContainer.appendChild(messageDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            
-            // Add to chat history
-            if (!chatHistory[currentChatIndex]) {
-                chatHistory[currentChatIndex] = [];
-            }
-            chatHistory[currentChatIndex].push({ text, sender, timestamp: new Date() });
-        }
-
-        function showLoading() {
-            const loadingIndicator = document.getElementById('loading-indicator');
-            const sendBtn = document.getElementById('send-btn');
-            loadingIndicator.style.display = 'flex';
-            sendBtn.disabled = true;
-        }
-
-        function hideLoading() {
-            const loadingIndicator = document.getElementById('loading-indicator');
-            const sendBtn = document.getElementById('send-btn');
-            loadingIndicator.style.display = 'none';
-            sendBtn.disabled = false;
-        }
-
-        function generateAIResponse(userMessage) {
-            const responses = [
-                "Entendi! Vou ajudar você com isso. Pode me dar mais detalhes?",
-                "Ótima pergunta! Vou analisar isso para você.",
-                "Interessante! Vou pensar sobre isso e te dar uma resposta completa.",
-                "Com certeza! Vou processar sua solicitação e retornar com a melhor resposta.",
-                "Excelente ponto! Vou considerar isso na minha resposta.",
-                "Vou trabalhar nisso para você. Um momento, por favor!",
-                "Entendido! Vou preparar uma resposta detalhada para você."
-            ];
-            
-            const contextualResponses = {
-                "olá": "Olá! Como posso ajudar você hoje? 😊",
-                "oi": "Oi! Tudo bem? Em que posso ser útil?",
-                "bom dia": "Bom dia! Como posso ajudar você hoje?",
-                "boa tarde": "Boa tarde! Em que posso auxiliar?",
-                "boa noite": "Boa noite! Como posso ajudar?",
-                "ajuda": "Claro! Estou aqui para ajudar. Me diga o que você precisa!",
-                "help": "Of course! I'm here to help. What do you need?",
-                "obrigado": "De nada! Sempre que precisar, estarei aqui para ajudar! 😊",
-                "valeu": "Por nada! Conte sempre comigo!",
-                "tchau": "Tchau! Foi um prazer ajudar. Volte sempre! 👋"
-            };
-            
-            const lowerMessage = userMessage.toLowerCase();
-            
-            // Check for contextual responses
-            for (const [key, response] of Object.entries(contextualResponses)) {
-                if (lowerMessage.includes(key)) {
-                    return response;
-                }
-            }
-            
-            // Return random response
-            return responses[Math.floor(Math.random() * responses.length)];
-        }
-
-        function newChat() {
-            // Save current chat
-            currentChatIndex++;
-            
-            // Clear messages
-            const messagesContainer = document.getElementById('chat-messages');
-            messagesContainer.innerHTML = `
-                <div class="message">
-                    <div class="message-avatar ai-avatar">🤖</div>
-                    <div class="message-content">
-                        <h3>AI Assistant</h3>
-                        <div class="message-text">
-                            Olá! Sou seu assistente de IA. Como posso ajudar você hoje? 😊
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            // Add to chat history
-            const chatHistoryContainer = document.getElementById('chat-history');
-            const newChatItem = document.createElement('div');
-            newChatItem.className = 'chat-history-item';
-            newChatItem.innerHTML = `
-                <span>💬</span>
-                <span>Chat ${currentChatIndex + 1}</span>
-            `;
-            newChatItem.onclick = () => loadChat(currentChatIndex);
-            
-            // Remove active class from all items
-            document.querySelectorAll('.chat-history-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            newChatItem.classList.add('active');
-            chatHistoryContainer.insertBefore(newChatItem, chatHistoryContainer.firstChild);
-        }
-
-        function loadChat(index) {
-            // This would load a specific chat from history
-            currentChatIndex = index;
-            
-            // Clear messages
-            const messagesContainer = document.getElementById('chat-messages');
-            messagesContainer.innerHTML = '';
-            
-            // Load messages from history
-            if (chatHistory[index]) {
-                chatHistory[index].forEach(msg => {
-                    addMessage(msg.text, msg.sender);
-                });
-            } else {
-                // Add welcome message if no history
-                addMessage('Olá! Sou seu assistente de IA. Como posso ajudar você hoje? 😊', 'ai');
-            }
-            
-            // Update active state in sidebar
-            document.querySelectorAll('.chat-history-item').forEach((item, i) => {
-                item.classList.toggle('active', i === index);
-            });
-        }
-
-        // Initialize the chat
-        document.addEventListener('DOMContentLoaded', function() {
-            const input = document.getElementById('message-input');
-            input.focus();
-        });
-    </script>
