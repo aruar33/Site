@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Casa no Souto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                Casa no Souto
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active"><i class="fas fa-chart-line"></i> Dashboard</a>
+                <a href="#" class="nav-item"><i class="fas fa-chart-bar"></i> Relatórios</a>
+                <a href="#" class="nav-item"><i class="fas fa-cog"></i> Configurações</a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="index.html" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <h1>Dashboard de Inteligência Competitiva</h1>
+                <div class="user-profile">
+                    <span id="username-display"></span>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </header>
+
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="competitor1">Concorrente 1</label>
+                    <select id="competitor1">
+                        <option>Natura Glamping</option>
+                        <option>Competitor A</option>
+                        <option>Competitor B</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="competitor2">Concorrente 2</label>
+                    <select id="competitor2">
+                        <option>Competitor X</option>
+                        <option>Competitor C</option>
+                        <option>Competitor D</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="competitor3">Concorrente 3</label>
+                    <select id="competitor3">
+                        <option>Competitor Y</option>
+                        <option>Competitor E</option>
+                        <option>Competitor F</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Metrics -->
+            <section class="metrics-grid">
+                <div class="metric-card">
+                    <h3>Taxa de Ocupação</h3>
+                    <p>85%</p>
+                    <span class="metric-change positive">+2%</span>
+                </div>
+                <div class="metric-card">
+                    <h3>Preço Médio (ADR)</h3>
+                    <p>$250</p>
+                    <span class="metric-change positive">+5%</span>
+                </div>
+                <div class="metric-card">
+                    <h3>RevPAR</h3>
+                    <p>$212.50</p>
+                    <span class="metric-change positive">+7%</span>
+                </div>
+            </section>
+
+            <!-- Charts -->
+            <section class="charts-grid">
+                <div class="chart-card">
+                    <h3>Price Optimization (Últimos 30 dias)</h3>
+                    <canvas id="price-optimization-chart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Sustainability Comparison</h3>
+                    <canvas id="sustainability-chart"></canvas>
+                </div>
+            </section>
+
+            <!-- Review Analysis -->
+            <section class="review-analysis">
+                <h2>Análise de Reviews</h2>
+                <div class="review-grid">
+                    <div class="review-card">
+                        <div class="review-source">
+                            <i class="fab fa-tripadvisor"></i> TripAdvisor
+                        </div>
+                        <div class="review-rating">
+                            5.0 <span class="stars">★★★★★</span>
+                        </div>
+                        <div class="review-comments">
+                            <h4>Comentários Positivos</h4>
+                            <ul>
+                                <li>"Lugar incrível, superou as expectativas!"</li>
+                                <li>"Atendimento impecável e sustentabilidade real."</li>
+                            </ul>
+                            <h4>Comentários Negativos</h4>
+                            <ul>
+                                <li>"Acesso um pouco difícil à noite."</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-source">
+                            <i class="fab fa-google"></i> Google Reviews
+                        </div>
+                        <div class="review-rating">
+                            4.9 <span class="stars">★★★★☆</span>
+                        </div>
+                        <div class="review-comments">
+                            <h4>Comentários Positivos</h4>
+                            <ul>
+                                <li>"Experiência única, perfeita para relaxar."</li>
+                                <li>"Conceito fantástico e muito bem executado."</li>
+                            </ul>
+                            <h4>Comentários Negativos</h4>
+                            <ul>
+                                <li>"Wi-Fi poderia ser mais rápido."</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- AI Assistant -->
+        <aside class="ai-assistant">
+            <div class="ai-header">
+                <h3>AI Assistant</h3>
+            </div>
+            <div class="ai-messages" id="ai-messages">
+                <div class="ai-message bot">Olá! Como posso ajudar a analisar os dados hoje?</div>
+            </div>
+            <div class="ai-input">
+                <input type="text" id="ai-input" placeholder="Pergunte sobre os dados...">
+                <button id="ai-send"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </aside>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

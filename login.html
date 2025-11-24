@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Casa no Souto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <form class="login-form" id="loginForm">
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                Casa no Souto
+            </div>
+            <h2>Dashboard Login</h2>
+            <div class="form-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit" class="submit-btn">Entrar</button>
+            <p id="error-message" class="error-message"></p>
+        </form>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>

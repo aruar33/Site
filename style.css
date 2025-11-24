@@ -744,3 +744,38 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+/* Login Page Styles */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--bege-claro);
+}
+
+.login-form {
+    background: var(--branco);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-form h2 {
+    margin-bottom: 1.5rem;
+    color: var(--verde-escuro);
+}
+
+.login-form .logo {
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.error-message {
+    color: #d9534f;
+    margin-top: 1rem;
+    min-height: 1.2em;
+}
